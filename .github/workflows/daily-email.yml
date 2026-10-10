@@ -1,0 +1,25 @@
+name: Daily email
+
+on:
+  schedule:
+    - cron: "52 23 * * *" # 07:52 Taiwan time (GitHub often starts a few minutes late)
+  workflow_dispatch:
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Send email
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+          DRIVE_OUTPUT_FOLDER: ${{ vars.DRIVE_OUTPUT_FOLDER || 'YT Music Output' }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions
+        run: python scripts/send_email.py

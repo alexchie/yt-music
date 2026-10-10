@@ -1,0 +1,57 @@
+name: Daily video
+
+on:
+  schedule:
+    - cron: "17 19 * * *" # 03:17 Taiwan time
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency: daily-video
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      DRIVE_LIBRARY_FOLDER: ${{ vars.DRIVE_LIBRARY_FOLDER || 'YT Music Library' }}
+      DRIVE_OUTPUT_FOLDER: ${{ vars.DRIVE_OUTPUT_FOLDER || 'YT Music Output' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-cjk rclone
+          pip install -r requirements.txt
+
+      - name: Configure rclone
+        env:
+          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
+        run: |
+          mkdir -p ~/.config/rclone
+          printf '%s\n' "$RCLONE_CONF" > ~/.config/rclone/rclone.conf
+
+      - name: Download music library
+        run: rclone copy "gdrive:$DRIVE_LIBRARY_FOLDER" music --transfers 8
+
+      - name: Make video
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python scripts/make_video.py
+
+      - name: Upload to Google Drive
+        run: rclone copy output "gdrive:$DRIVE_OUTPUT_FOLDER" --exclude "work/**"
+
+      - name: Save history
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/history.json
+          git commit -m "Daily video $(TZ=Asia/Taipei date +%F)"
+          git push

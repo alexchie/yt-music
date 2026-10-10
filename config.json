@@ -1,0 +1,17 @@
+{
+  "music_dir": "music",
+  "output_dir": "output",
+  "background": "assets/background.png",
+  "track_count_min": 12,
+  "track_count_max": 15,
+  "target_minutes": 60,
+  "crossfade_seconds": 4,
+  "cover_seconds": 6,
+  "width": 1920,
+  "height": 1080,
+  "fps": 24,
+  "model": "claude-sonnet-5-5",
+  "timezone": "Asia/Taipei",
+  "music_style": "relaxing, warm instrumental music",
+  "history_for_prompt": 60
+}
