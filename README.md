@@ -75,7 +75,7 @@ repo → Actions → Daily video → Run workflow，成功後再跑一次 Daily 
 建議 16:9、至少 1600×900；比例不同會自動從中間裁切。
 
 ## 每天的產出
-`YT Music Output` 裡會多三個檔案：
+`YT Music Output` 裡會多三個檔案（只保留最近 3 天，更舊的會自動永久刪除，請在 3 天內上傳到 YouTube）：
 - `日期_主題.mp4`：影片
 - `日期_主題_cover.jpg`：封面（可直接當 YouTube 縮圖）
 - `日期_主題_description.txt`：標題、說明（含曲目時間軸）、標籤

@@ -46,6 +46,11 @@ jobs:
       - name: Upload to Google Drive
         run: rclone copy output "gdrive:$DRIVE_OUTPUT_FOLDER" --exclude "work/**"
 
+      # Keep the last 3 days (today + 2); 60h catches the file made 3 days ago even if
+      # today's run starts a little early. Skip the trash so the space is freed right away.
+      - name: Delete outputs older than 3 days
+        run: rclone delete "gdrive:$DRIVE_OUTPUT_FOLDER" --min-age 60h --drive-use-trash=false
+
       - name: Save history
         run: |
           git config user.name "github-actions[bot]"
