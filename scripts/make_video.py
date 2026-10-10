@@ -26,6 +26,7 @@ ROOT = Path(__file__).resolve().parent.parent
 FONTS = ROOT / "assets" / "fonts"
 HISTORY = ROOT / "data" / "history.json"
 AUDIO_EXT = {".mp3", ".m4a", ".aac", ".wav", ".flac", ".ogg", ".opus"}
+IMAGE_EXT = {".png", ".jpg", ".jpeg", ".webp"}
 CJK_FONTS = [
     "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
     "/usr/share/fonts/noto-cjk/NotoSansCJK-Regular.ttc",
@@ -100,8 +101,18 @@ def draw_shadowed(base, xy, text, fnt, fill, anchor, shadow_alpha=150, blur=6):
     ImageDraw.Draw(base).text(xy, text, font=fnt, fill=fill, anchor=anchor)
 
 
-def load_background(cfg):
-    img = Image.open(ROOT / cfg["background"]).convert("RGB")
+def pick_background(cfg, history):
+    """The least recently used background, so every image appears once before any repeats."""
+    images = sorted(p for p in (ROOT / cfg["backgrounds_dir"]).iterdir() if p.suffix.lower() in IMAGE_EXT)
+    if not images:
+        sys.exit(f"No images found in {cfg['backgrounds_dir']}")
+    last_used = {h.get("background"): i for i, h in enumerate(history)}
+    oldest = min(last_used.get(p.name, -1) for p in images)
+    return random.choice([p for p in images if last_used.get(p.name, -1) == oldest])
+
+
+def load_background(cfg, path):
+    img = Image.open(path).convert("RGB")
     w, h = cfg["width"], cfg["height"]
     scale = max(w / img.width, h / img.height)
     img = img.resize((round(img.width * scale), round(img.height * scale)), Image.LANCZOS)
@@ -208,12 +219,14 @@ def main():
     print(f"{len(chosen)} tracks, {total / 60:.1f} min")
 
     history = json.loads(HISTORY.read_text(encoding="utf-8")) if HISTORY.exists() else []
+    background = pick_background(cfg, history)
+    print(f"Background: {background.name}")
     ai_error = None
     if args.skip_ai:
         meta = metadata.fallback(today)
     else:
         try:
-            meta = metadata.generate(cfg, today, names, history)
+            meta = metadata.generate(cfg, today, names, history, background)
         except Exception as e:  # the video should still ship if the API is down
             ai_error = f"{type(e).__name__}: {e}"
             print(f"Metadata generation failed, using fallback: {ai_error}")
@@ -221,7 +234,7 @@ def main():
     print(f"Theme: {meta['cover_title']} | {meta['youtube_title']}")
 
     base = f"{today:%Y-%m-%d}_{slug(meta['cover_title'])}"
-    bg = load_background(cfg)
+    bg = load_background(cfg, background)
     cover = out_dir / f"{base}_cover.jpg"
     make_cover(bg, meta["cover_title"], meta["cover_subtitle"], cover)
 
@@ -270,6 +283,7 @@ def main():
         **meta,
         "description": description,
         "tracks": names,
+        "background": background.name,
         "duration_seconds": round(total),
         "files": [video.name, cover.name, f"{base}_description.txt"],
         "ai_error": ai_error,

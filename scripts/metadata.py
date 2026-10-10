@@ -1,17 +1,12 @@
 """Ask Claude for today's theme, cover text, YouTube title and description."""
+import base64
+import io
 import json
 
 import anthropic
+from PIL import Image
 
-SCENE = (
-    "a sunlit modern living room: a white marble wall with soft leaf shadows cast "
-    "through a window, a large abstract blue-and-gold painting in a light wood frame, "
-    "a walnut turntable spinning a vinyl record on a light oak sideboard, two tall "
-    "black floor-standing speakers on either side, a tall palm on the left and a "
-    "monstera on the right"
-)
-
-SYSTEM_PROMPT = f"""You are the creative director of a YouTube channel that uploads one music playlist of about an hour every day. Every video uses the same picture: {SCENE}.
+SYSTEM_PROMPT = """You are the creative director of a YouTube channel that uploads one music playlist of about an hour every day. Each video shows a single still picture of a living room with speakers; today's picture is attached.
 
 Your job is to invent today's theme and write its packaging. Write everything in English except theme_note_zh.
 
@@ -23,9 +18,9 @@ What works on YouTube music and ambience channels in 2026 (from a study of about
 - Rising moods: vintage and lounge, "oldies playing in another room", focus and work-from-home sessions, quiet luxury, slow mornings, gentle nostalgia.
 - Leave out: names of films, games, franchises or real artists; claims like "no AI" or "human-made"; medical promises (describe how the music feels, not what it treats); repeating the place, weather and mood of recent videos.
 
-The picture never changes, so today's theme must be a moment that could happen in this living room: a time of day, the light, the weather outside the window, the season, and what the listener is doing (reading, a slow coffee, working from home, a rainy Sunday, a quiet dinner, tidying up, a nap). Do not describe things the picture contradicts (no fireplace, no snow indoors, no city skyline in the room). Weather outside is fine because the window itself is not visible.
+Build today's theme from the attached picture: a moment that could happen in that room, matching its light, time of day and mood, plus the season, the weather outside and what the listener is doing (reading, a slow coffee, working from home, a rainy Sunday, a quiet dinner, tidying up, a nap). Do not describe anything the picture contradicts (for example a fireplace or snow when none is shown). Weather outside is fine when no window view is visible.
 
-Describe the music only as: {{music_style}}. Do not name instruments or genres beyond that description. The track names are a hint about the mood.
+Describe the music only as: {music_style}. Do not name instruments or genres beyond that description. The track names are a hint about the mood.
 
 Fields:
 - cover_title: 2-4 words in Title Case, printed large in the middle of the thumbnail. Soft and evocative, e.g. "Late Autumn Vinyl", "Slow Sunday Light". It must not repeat or closely echo any past cover title.
@@ -62,7 +57,17 @@ SEASONS = {
 }
 
 
-def generate(cfg, today, track_names, history):
+def image_block(path):
+    """The background as a small JPEG content block, enough for Claude to read the scene."""
+    img = Image.open(path).convert("RGB")
+    img.thumbnail((1280, 1280))
+    buf = io.BytesIO()
+    img.save(buf, "JPEG", quality=85)
+    data = base64.standard_b64encode(buf.getvalue()).decode()
+    return {"type": "image", "source": {"type": "base64", "media_type": "image/jpeg", "data": data}}
+
+
+def generate(cfg, today, track_names, history, background):
     """Return a metadata dict whose cover_title and youtube_title are not in history."""
     client = anthropic.Anthropic()
     recent = history[-cfg["history_for_prompt"]:]
@@ -75,7 +80,7 @@ def generate(cfg, today, track_names, history):
         + "\n\nToday's tracks, in play order:\n"
         + "\n".join(f"- {n}" for n in track_names)
     )
-    messages = [{"role": "user", "content": user}]
+    messages = [{"role": "user", "content": [image_block(background), {"type": "text", "text": user}]}]
 
     for _ in range(3):
         response = client.beta.messages.create(
@@ -112,7 +117,7 @@ def fallback(today):
         "cover_subtitle": f"a playlist for {today:%B %d}",
         "youtube_title": f"Living Room Vinyl Session • {today:%B %d, %Y} • 1 Hour Relaxing Playlist",
         "description": (
-            "Sunlight on the marble wall, a record turning slowly, and an hour with nowhere else to be.\n\n"
+            "Soft light in the living room, lofi beats on the speakers, and an hour with nowhere else to be.\n\n"
             "Play it while you read, work from home or take a slow coffee break.\n\n"
             "If this hour kept you company, leave a like, subscribe, and tell us what you're doing while you listen."
         ),

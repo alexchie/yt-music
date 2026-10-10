@@ -60,7 +60,10 @@ repo → Actions → Daily video → Run workflow，成功後再跑一次 Daily 
 | `crossfade_seconds` | 歌曲間淡入淡出秒數 |
 | `cover_seconds` | 開頭封面顯示秒數 |
 
-背景圖在 `assets/background.png`，換圖時保持 16:9、至少 1600×900 即可。
+## 背景圖
+所有背景圖放在 `assets/backgrounds/`（png / jpg / webp），每天自動換一張：
+每張都輪過一次之後才會重複，輪的順序是隨機的。Claude 會看當天的圖來寫主題，所以圖的氣氛（白天、夜晚、雨天）會反映在標題裡。
+建議 16:9、至少 1600×900；比例不同會自動從中間裁切。新增圖片只要放進資料夾並 push 即可。
 
 ## 每天的產出
 `YT Music Output` 裡會多三個檔案：
