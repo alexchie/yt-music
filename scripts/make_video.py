@@ -1,6 +1,6 @@
 """Build today's ~1 hour music video from a random selection of tracks.
 
-Steps: pick 12-15 tracks -> crossfade them into one audio file -> draw the cover and
+Steps: pick 8-9 tracks -> crossfade them into one audio file -> draw the cover and
 one "now playing" frame per track -> encode the video -> write the metadata to
 data/history.json and the output folder. Titles and text come from data/themes.json.
 
@@ -48,7 +48,7 @@ def duration(path):
 
 
 def pick_tracks(cfg, tracks):
-    """Random 12-15 tracks whose crossfaded length lands closest to the target."""
+    """Random tracks (count from config) whose crossfaded length lands closest to the target."""
     fade = cfg["crossfade_seconds"]
     target = cfg["target_minutes"] * 60
     lo = min(cfg["track_count_min"], len(tracks))
