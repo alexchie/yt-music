@@ -30,7 +30,11 @@ def main():
         )
     else:
         minutes = entry["duration_seconds"] / 60
-        warning = f"\n⚠️ AI 產生標題失敗，使用了備用標題：{entry['ai_error']}\n" if entry.get("ai_error") else ""
+        warning = ""
+        if not entry.get("scheduled_theme", True):
+            warning += "\n⚠️ 主題庫裡沒有今天的主題，使用了備用的通用標題。\n"
+        if entry.get("themes_remaining", 99) < 14:
+            warning += f"\n⚠️ 主題庫只剩 {entry['themes_remaining']} 天，請盡快補充 data/themes.json。\n"
         subject = f"[YT Music] {today}｜{entry['cover_title']}"
         body = (
             f"今天的影片已上傳到 Google Drive「{folder}」資料夾。\n"

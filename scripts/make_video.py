@@ -2,11 +2,10 @@
 
 Steps: pick 12-15 tracks -> crossfade them into one audio file -> draw the cover and
 one "now playing" frame per track -> encode the video -> write the metadata to
-data/history.json and the output folder.
+data/history.json and the output folder. Titles and text come from data/themes.json.
 
-Usage: python scripts/make_video.py [--skip-ai]
+Usage: python scripts/make_video.py
 """
-import argparse
 import datetime
 import json
 import os
@@ -20,7 +19,7 @@ from zoneinfo import ZoneInfo
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import metadata  # noqa: E402
+import themes  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 FONTS = ROOT / "assets" / "fonts"
@@ -189,10 +188,6 @@ def slug(text):
 
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--skip-ai", action="store_true", help="use placeholder titles instead of calling Claude")
-    args = parser.parse_args()
-
     cfg = json.loads((ROOT / "config.json").read_text(encoding="utf-8"))
     today = datetime.datetime.now(ZoneInfo(cfg["timezone"])).date()
     music_dir = ROOT / cfg["music_dir"]
@@ -219,19 +214,17 @@ def main():
     print(f"{len(chosen)} tracks, {total / 60:.1f} min")
 
     history = json.loads(HISTORY.read_text(encoding="utf-8")) if HISTORY.exists() else []
-    background = pick_background(cfg, history)
-    print(f"Background: {background.name}")
-    ai_error = None
-    if args.skip_ai:
-        meta = metadata.fallback(today)
-    else:
-        try:
-            meta = metadata.generate(cfg, today, names, history, background)
-        except Exception as e:  # the video should still ship if the API is down
-            ai_error = f"{type(e).__name__}: {e}"
-            print(f"Metadata generation failed, using fallback: {ai_error}")
-            meta = metadata.fallback(today)
+    all_themes = themes.load()
+    meta = themes.for_date(all_themes, today)
+    scheduled = meta is not None
+    if not scheduled:
+        print(f"No theme scheduled for {today}, using fallback")
+        meta = themes.fallback(today)
+    background = ROOT / cfg["backgrounds_dir"] / meta.get("background", "")
+    if not background.is_file():
+        background = pick_background(cfg, history)
     print(f"Theme: {meta['cover_title']} | {meta['youtube_title']}")
+    print(f"Background: {background.name}")
 
     base = f"{today:%Y-%m-%d}_{slug(meta['cover_title'])}"
     bg = load_background(cfg, background)
@@ -272,21 +265,27 @@ def main():
     ])
 
     chapters = "\n".join(f"{timestamp(s)} {n}" for s, n in zip(switches, names))
-    description = f"{meta['description'].strip()}\n\nTracklist\n{chapters}\n\n{' '.join(meta['hashtags'])}"
+    description = (
+        f"{meta['description'].strip()}\n\n{themes.call_to_action(today)}\n\n"
+        f"Tracklist\n{chapters}\n\n{' '.join(meta['hashtags'])}"
+    )
+    tags = themes.all_tags(meta)
     (out_dir / f"{base}_description.txt").write_text(
-        f"TITLE\n{meta['youtube_title']}\n\nDESCRIPTION\n{description}\n\nTAGS\n{', '.join(meta['tags'])}\n",
+        f"TITLE\n{meta['youtube_title']}\n\nDESCRIPTION\n{description}\n\nTAGS\n{', '.join(tags)}\n",
         encoding="utf-8",
     )
 
     history.append({
-        "date": today.isoformat(),
         **meta,
+        "date": today.isoformat(),
         "description": description,
+        "tags": tags,
         "tracks": names,
         "background": background.name,
         "duration_seconds": round(total),
         "files": [video.name, cover.name, f"{base}_description.txt"],
-        "ai_error": ai_error,
+        "scheduled_theme": scheduled,
+        "themes_remaining": themes.remaining(all_themes, today),
     })
     HISTORY.parent.mkdir(exist_ok=True)
     HISTORY.write_text(json.dumps(history, ensure_ascii=False, indent=2), encoding="utf-8")
