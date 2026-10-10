@@ -12,6 +12,6 @@
   "fps": 24,
   "model": "claude-sonnet-5-5",
   "timezone": "Asia/Taipei",
-  "music_style": "relaxing, warm instrumental music",
+  "music_style": "instrumental lofi beats with no vocals",
   "history_for_prompt": 60
 }
