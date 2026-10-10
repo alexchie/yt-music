@@ -48,19 +48,10 @@ def duration(path):
 
 
 def pick_tracks(cfg, tracks):
-    """Random tracks (count from config) whose crossfaded length lands closest to the target."""
-    fade = cfg["crossfade_seconds"]
-    target = cfg["target_minutes"] * 60
+    """A random count of random tracks (count range from config), in random order."""
     lo = min(cfg["track_count_min"], len(tracks))
     hi = min(cfg["track_count_max"], len(tracks))
-    best, best_gap = None, None
-    for _ in range(5000):
-        chosen = random.sample(tracks, random.randint(lo, hi))
-        total = sum(d for _, d in chosen) - fade * (len(chosen) - 1)
-        gap = abs(total - target)
-        if best_gap is None or gap < best_gap:
-            best, best_gap = chosen, gap
-    return best
+    return random.sample(tracks, random.randint(lo, hi))
 
 
 def display_name(path):

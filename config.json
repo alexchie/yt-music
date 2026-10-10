@@ -4,7 +4,6 @@
   "backgrounds_dir": "assets/backgrounds",
   "track_count_min": 8,
   "track_count_max": 9,
-  "target_minutes": 60,
   "crossfade_seconds": 4,
   "cover_seconds": 6,
   "width": 1920,

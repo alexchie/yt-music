@@ -1,6 +1,6 @@
 # YT Music 每日自動影片
 
-每天自動做一支約 1 小時的 lofi 音樂影片：從 Google Drive 音樂庫隨機挑 8–9 首、淡入淡出接在一起，
+每天自動做一支約 1 小時的 lofi 音樂影片：從 Google Drive 音樂庫每天隨機挑 8–9 首、以隨機順序排列，接點都用淡出淡入銜接，
 配上客廳喇叭背景與曲名字幕，第 0 秒放封面，套用主題庫裡當天的英文主題、標題、說明與標籤，
 上傳到 Google Drive，早上 8 點寄出通知信。整個流程不需要呼叫 AI，也沒有 API 費用。
 
@@ -66,8 +66,7 @@ repo → Actions → Daily video → Run workflow，成功後再跑一次 Daily 
 
 | 欄位 | 說明 |
 |---|---|
-| `track_count_min` / `track_count_max` | 每支影片的歌曲數 |
-| `target_minutes` | 目標長度（分鐘） |
+| `track_count_min` / `track_count_max` | 每支影片的歌曲數（每天在這個範圍內隨機） |
 | `crossfade_seconds` | 歌曲間淡入淡出秒數 |
 | `cover_seconds` | 開頭封面顯示秒數 |
 
