@@ -294,5 +294,54 @@
     ],
     "scheduled_theme": true,
     "themes_remaining": 95
+  },
+  {
+    "date": "2026-10-16",
+    "background": "living-room-08.png",
+    "cover_title": "Quiet Friday Light",
+    "cover_subtitle": "lofi for the last hours of the week",
+    "youtube_title": "quiet friday light on the travertine wall ✨ lofi beats to finish the week calmly",
+    "description": "Soft light moves across the stone wall as the week winds down. One last task, then the weekend.\n\nSteady instrumental lofi for wrapping up work, clearing the inbox or a slow Friday afternoon at home.\n\nNew lofi playlist every day. Subscribe so you don't miss tomorrow's, and share what you're up to in the comments.\n\nTracklist\n00:00 Soft Static Lullaby\n07:58 Velvet Library Hours\n15:54 Gilded Dust and Daydreams\n23:34 Rhodes by the Hearth\n31:22 Slow Ember Sundays\n39:18 Ember and Needle\n46:59 Midnight Espresso Lounge\n54:55 Honeyed Afternoon Haze\n\n#lofi #fridayvibes #workfromhome",
+    "hashtags": [
+      "#lofi",
+      "#fridayvibes",
+      "#workfromhome"
+    ],
+    "tags": [
+      "friday lofi",
+      "end of week music",
+      "minimalist lofi",
+      "calm focus music",
+      "quiet afternoon playlist",
+      "lofi",
+      "lofi beats",
+      "lofi hip hop",
+      "chill beats",
+      "instrumental lofi",
+      "lofi no vocals",
+      "study music",
+      "relaxing music",
+      "lofi playlist",
+      "1 hour lofi"
+    ],
+    "theme_note_zh": "週五午後的安靜光線，平靜收尾一週工作。",
+    "tracks": [
+      "Soft Static Lullaby",
+      "Velvet Library Hours",
+      "Gilded Dust and Daydreams",
+      "Rhodes by the Hearth",
+      "Slow Ember Sundays",
+      "Ember and Needle",
+      "Midnight Espresso Lounge",
+      "Honeyed Afternoon Haze"
+    ],
+    "duration_seconds": 3763,
+    "files": [
+      "2026-10-16_Quiet-Friday-Light.mp4",
+      "2026-10-16_Quiet-Friday-Light_cover.jpg",
+      "2026-10-16_Quiet-Friday-Light_description.txt"
+    ],
+    "scheduled_theme": true,
+    "themes_remaining": 94
   }
 ]
