@@ -7,5 +7,53 @@
     "privacy": "public",
     "thumbnail": "set",
     "uploaded_at": "2026-10-25T05:16:48+00:00"
+  },
+  {
+    "file": "2026-10-26_am_Stone-and-Ink_en_description.txt",
+    "video_file": "2026-10-26_am_Stone-and-Ink.mp4",
+    "lang": "en",
+    "video_id": "g1aXdx01KeU",
+    "url": "https://youtu.be/g1aXdx01KeU",
+    "title": "stone walls, black ink and a clean desk 🖤 minimal lofi beats for deep focus",
+    "privacy": "private",
+    "publish_at": "2026-10-26T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-10-25T20:06:03+00:00"
+  },
+  {
+    "file": "2026-10-26_am_Stone-and-Ink_zh_description.txt",
+    "video_file": "2026-10-26_am_Stone-and-Ink.mp4",
+    "lang": "zh",
+    "video_id": "ac4mpBu9rbo",
+    "url": "https://youtu.be/ac4mpBu9rbo",
+    "title": "石牆與水墨 🖋️ 極簡專注 lofi｜讀書工作一小時",
+    "privacy": "private",
+    "publish_at": "2026-10-26T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-10-25T20:06:22+00:00"
+  },
+  {
+    "file": "2026-10-26_pm_Rainy-Sunday-Sofa_en_description.txt",
+    "video_file": "2026-10-26_pm_Rainy-Sunday-Sofa.mp4",
+    "lang": "en",
+    "video_id": "ttxWsE1R-64",
+    "url": "https://youtu.be/ttxWsE1R-64",
+    "title": "rainy sunday on the sofa ☔ cozy lofi for staying in",
+    "privacy": "private",
+    "publish_at": "2026-10-26T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-10-25T20:06:36+00:00"
+  },
+  {
+    "file": "2026-10-26_pm_Rainy-Sunday-Sofa_zh_description.txt",
+    "video_file": "2026-10-26_pm_Rainy-Sunday-Sofa.mp4",
+    "lang": "zh",
+    "video_id": "9Eo0ULt8Mv8",
+    "url": "https://youtu.be/9Eo0ULt8Mv8",
+    "title": "雨天的週日午後 ☔ 窩在家裡聽的 lofi｜讀書・放鬆・一小時純音樂",
+    "privacy": "private",
+    "publish_at": "2026-10-26T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-10-25T20:06:49+00:00"
   }
 ]
