@@ -1,0 +1,65 @@
+name: Daily YouTube upload
+
+on:
+  # Runs right after Daily video succeeds; the schedule is a fallback in case that
+  # trigger is missed. Files already uploaded are skipped, so running twice is safe.
+  workflow_run:
+    workflows: ["Daily video"]
+    types: [completed]
+  schedule:
+    - cron: "10 1 * * *" # 09:10 Taiwan time
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency: daily-upload
+
+jobs:
+  upload:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      DRIVE_OUTPUT_FOLDER: ${{ vars.DRIVE_OUTPUT_FOLDER || 'YT Music Output' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y rclone
+          pip install -r requirements.txt
+
+      - name: Configure rclone
+        env:
+          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
+        run: |
+          mkdir -p ~/.config/rclone
+          printf '%s\n' "$RCLONE_CONF" > ~/.config/rclone/rclone.conf
+
+      # Only the files from the last 2 days; the folder keeps 3 days of videos.
+      - name: Download newest videos from Google Drive
+        run: rclone copy "gdrive:$DRIVE_OUTPUT_FOLDER" drive --max-age 48h
+
+      - name: Upload to YouTube
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          YT_PRIVACY: ${{ vars.YT_PRIVACY || 'public' }}
+        run: python scripts/upload_youtube.py drive
+
+      - name: Save upload record
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/uploads.json
+          git diff --cached --quiet && exit 0
+          git commit -m "YouTube upload $(TZ=Asia/Taipei date +%F)"
+          git pull --rebase
+          git push
