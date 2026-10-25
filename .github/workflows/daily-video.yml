@@ -2,7 +2,7 @@ name: Daily video
 
 on:
   schedule:
-    - cron: "17 19 * * *" # 03:17 Taiwan time
+    - cron: "17 17 * * *" # 01:17 Taiwan time; videos go public at 08:00 and 20:00
   workflow_dispatch:
 
 permissions:
@@ -13,7 +13,7 @@ concurrency: daily-video
 jobs:
   build:
     runs-on: ubuntu-24.04
-    timeout-minutes: 120
+    timeout-minutes: 180
     env:
       DRIVE_LIBRARY_FOLDER: ${{ vars.DRIVE_LIBRARY_FOLDER || 'YT Music Library' }}
       DRIVE_OUTPUT_FOLDER: ${{ vars.DRIVE_OUTPUT_FOLDER || 'YT Music Output' }}

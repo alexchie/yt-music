@@ -9,5 +9,20 @@
   "width": 1920,
   "height": 1080,
   "fps": 24,
-  "timezone": "Asia/Taipei"
+  "timezone": "Asia/Taipei",
+  "languages": [
+    "zh",
+    "en"
+  ],
+  "videos": [
+    {
+      "id": "am",
+      "publish": "08:00"
+    },
+    {
+      "id": "pm",
+      "publish": "20:00",
+      "from_pool": true
+    }
+  ]
 }

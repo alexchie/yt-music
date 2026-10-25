@@ -1,14 +1,15 @@
 # YT Music 每日自動影片
 
-每天自動做一支約 1 小時的 lofi 音樂影片：從 Google Drive 音樂庫每天隨機挑 8–9 首、以隨機順序排列，接點都用淡出淡入銜接，
+每天自動做兩支約 1 小時的 lofi 音樂影片（早上 08:00、晚上 20:00 發布），每支都上傳中文版和英文版各一次，
+所以 YouTube 每天會多四支影片。每支影片從 Google Drive 音樂庫隨機挑 8–9 首、以隨機順序排列，接點都用淡出淡入銜接，
 背景是當天從網路抓的一張免版權相關照片（照片來源寫在 YouTube 說明裡，不放在畫面上），配上曲名字幕，
 第 0 秒放封面，套用主題庫裡當天的英文主題、標題、說明與標籤，上傳到 Google Drive，
 接著自動上傳到 YouTube，早上 8 點寄出通知信。整個流程不需要呼叫 AI，也沒有 API 費用。
 
 | 時間（台灣） | 流程 | 檔案 |
 |---|---|---|
-| 03:17 | 製作影片並上傳 Google Drive | `.github/workflows/daily-video.yml` |
-| 影片做好後 | 把 Drive 裡最新的影片上傳到 YouTube（09:10 再檢查一次） | `.github/workflows/daily-upload.yml` |
+| 01:17 | 製作早晚兩支影片並上傳 Google Drive | `.github/workflows/daily-video.yml` |
+| 影片做好後 | 中英兩版都上傳到 YouTube，排程在 08:00 / 20:00 公開（07:10 再檢查一次） | `.github/workflows/daily-upload.yml` |
 | 07:52 | 寄出 YouTube 標題、說明、標籤 | `.github/workflows/daily-email.yml` |
 
 GitHub 排程常會晚幾分鐘到十幾分鐘才啟動，所以信件排在 07:52。
@@ -69,13 +70,20 @@ repo → Settings → Secrets and variables → Actions → New repository secre
   [YouTube API 稽核申請](https://support.google.com/youtube/contact/yt_api_form)；通過前請到 YouTube Studio 手動改公開或排程。
 - 自訂縮圖需要頻道完成手機驗證（https://www.youtube.com/verify）；沒驗證的話影片照常上傳，只是不會設縮圖。
 - 每天的上傳紀錄（影片網址）記在 `data/uploads.json`，同一支影片不會重複上傳。
-- API 每日免費配額可上傳約 6 支，一天一支綽綽有餘。
+- API 每日免費配額可上傳約 6 支，一天 4 支（含縮圖約 6,600 單位）在範圍內。
+- 影片會在 08:00 / 20:00（台灣時間）自動公開；如果上傳時已經過了發布時間，就直接公開。
 
 ### 6. 測試
 repo → Actions → Daily video → Run workflow，成功後 Daily YouTube upload 會自動接著跑，再跑一次 Daily email。
 
-## 主題庫（`data/themes.json`）
-每天一個主題，依日期排好，目前排到 **2027-01-18**。每個主題包含：
+## 主題庫
+- **早上的影片**用 `data/themes.json`：每天一個主題，依日期排好，目前排到 **2027-01-18**。
+- **晚上的影片**用 `data/themes_pool.json`：不分日期，依順序取下一個沒用過的主題（目前 60 個）。
+- 每個主題的英文欄位在最外層，中文版放在 `zh` 裡（`cover_title`、`cover_subtitle`、`youtube_title`、`description`、`hashtags`、`tags`）。
+  兩版用同一支影片、同樣的音樂和畫面（影片開頭是英文封面），縮圖則各用自己語言的封面。
+- 任一個主題庫只剩 14 天以內時，通知信會提醒你補充。
+
+每個主題包含：
 
 | 欄位 | 說明 |
 |---|---|
@@ -109,10 +117,10 @@ repo → Actions → Daily video → Run workflow，成功後 Daily YouTube uplo
 建議 16:9、至少 1600×900；比例不同會自動從中間裁切。
 
 ## 每天的產出
-`YT Music Output` 裡會多三個檔案（只保留最近 3 天，更舊的會自動永久刪除，請在 3 天內上傳到 YouTube）：
-- `日期_主題.mp4`：影片
-- `日期_主題_cover.jpg`：封面（可直接當 YouTube 縮圖）
-- `日期_主題_description.txt`：標題、說明（含曲目時間軸）、標籤
+`YT Music Output` 裡每支影片會有這些檔案（只保留最近 3 天，更舊的會自動永久刪除）：
+- `日期_am或pm_主題.mp4`：影片
+- `日期_am或pm_主題_zh_cover.jpg` / `_en_cover.jpg`：中文與英文封面（YouTube 縮圖）
+- `日期_am或pm_主題_zh_description.txt` / `_en_description.txt`：標題、說明（含曲目時間軸）、標籤與發布時間
 
 每天的結果記在 `data/history.json`。這個檔每天自動 commit，
 也讓公開 repo 保持活動，排程不會因 60 天無活動被 GitHub 停用。

@@ -7,7 +7,7 @@ on:
     workflows: ["Daily video"]
     types: [completed]
   schedule:
-    - cron: "10 1 * * *" # 09:10 Taiwan time
+    - cron: "10 23 * * *" # 07:10 Taiwan time
   workflow_dispatch:
 
 permissions:
@@ -54,7 +54,9 @@ jobs:
           YT_PRIVACY: ${{ vars.YT_PRIVACY || 'public' }}
         run: python scripts/upload_youtube.py drive
 
+      # Runs even if an upload failed, so the ones that succeeded are never re-uploaded.
       - name: Save upload record
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

@@ -11,6 +11,8 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
+from PIL import Image
+
 API = "https://api.openverse.org/v1/images/"
 USER_AGENT = "yt-music-daily/1.0 (https://github.com/alexchie/yt-music)"
 MIN_WIDTH = 1600
@@ -79,7 +81,7 @@ def fetch(theme, used_ids, out_dir, seed):
             print(f"Openverse search failed for {query!r}: {e}")
             continue
         rng.shuffle(results)
-        for result in results[:5]:
+        for result in results[:8]:
             try:
                 data = _get(result["url"], timeout=60)
             except Exception as e:
@@ -87,6 +89,15 @@ def fetch(theme, used_ids, out_dir, seed):
                 continue
             path = Path(out_dir) / f"background_{result['id']}"
             path.write_bytes(data)
+            # Some sources only serve a small preview even when the original is large.
+            try:
+                with Image.open(path) as img:
+                    real_width = img.width
+            except Exception:
+                real_width = 0
+            if real_width < MIN_WIDTH:
+                print(f"Skipped {result['url']}: only {real_width}px wide")
+                continue
             print(f"Background from Openverse ({query!r}): {result.get('title')} - {result.get('foreign_landing_url')}")
             return path, {
                 "id": result["id"],
