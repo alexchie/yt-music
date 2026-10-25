@@ -1,8 +1,11 @@
-"""Build today's ~1 hour music video from a random selection of tracks.
+"""Build today's ~1 hour music videos (one per entry in config.json "videos").
 
-Steps: pick 8-9 tracks -> crossfade them into one audio file -> draw the cover and
-one "now playing" frame per track -> encode the video -> write the metadata to
-data/history.json and the output folder. Titles and text come from data/themes.json.
+For each video: pick 8-9 random tracks in random order -> crossfade them into one
+audio file -> fetch a background photo -> draw a cover per language and one
+"now playing" frame per track -> encode the video -> write a description file per
+language (uploaded as separate YouTube videos) and record it in data/history.json.
+The morning video uses today's theme from data/themes.json; the evening one takes
+the next unused theme from data/themes_pool.json.
 
 Usage: python scripts/make_video.py
 """
@@ -121,8 +124,10 @@ def make_cover(bg, title, subtitle, out_path):
     )
     img.alpha_composite(glow.filter(ImageFilter.GaussianBlur(50)))
 
-    title_font = fit(title, 170, w * 0.78, lambda s: font("CormorantGaramond.ttf", s, "SemiBold"))
-    sub_font = fit(subtitle, 58, w * 0.7, lambda s: font("CormorantGaramond-Italic.ttf", s, "Medium Italic"))
+    # CJK glyphs sit taller than the serif's, so they start smaller to clear the rule below.
+    title_size = 170 if all(ord(c) < 0x2000 for c in title) else 128
+    title_font = fit(title, title_size, w * 0.78, lambda s: text_font(title, s, "CormorantGaramond.ttf", "SemiBold"))
+    sub_font = fit(subtitle, 58, w * 0.7, lambda s: text_font(subtitle, s, "CormorantGaramond-Italic.ttf", "Medium Italic"))
     draw_shadowed(img, (w / 2, h * 0.47), title, title_font, (255, 248, 236, 255), "mm", 180, 10)
     line_y = h * 0.56
     ImageDraw.Draw(img).line((w / 2 - 70, line_y, w / 2 + 70, line_y), fill=(236, 214, 170, 230), width=2)
@@ -179,19 +184,24 @@ def slug(text):
     return re.sub(r"[^A-Za-z0-9]+", "-", text).strip("-") or "video"
 
 
-def main():
-    cfg = json.loads((ROOT / "config.json").read_text(encoding="utf-8"))
-    today = datetime.datetime.now(ZoneInfo(cfg["timezone"])).date()
-    music_dir = ROOT / cfg["music_dir"]
-    out_dir = ROOT / cfg["output_dir"]
-    work = out_dir / "work"
-    work.mkdir(parents=True, exist_ok=True)
+def pick_theme(video_cfg, today, dated, pool, used_titles):
+    """Morning video: today's dated theme. Evening video: the next unused pool theme."""
+    if not video_cfg.get("from_pool"):
+        meta = themes.for_date(dated, today)
+        if meta and meta["cover_title"] not in used_titles:
+            return meta, True
+    meta = themes.next_from_pool(pool, used_titles)
+    if meta:
+        return meta, True
+    print(f"No theme left for the {video_cfg['id']} video, using fallback")
+    return themes.fallback(today, evening=video_cfg.get("from_pool", False)), False
 
-    files = sorted(p for p in music_dir.rglob("*") if p.suffix.lower() in AUDIO_EXT)
-    if not files:
-        sys.exit(f"No audio files found in {music_dir}")
+
+def make_one(cfg, today, video_cfg, tracks, theme, scheduled, history, used_bg_ids, out_dir):
+    """Encode one video and write a cover and description per language. Returns the history entry."""
+    work = out_dir / "work" / video_cfg["id"]
+    work.mkdir(parents=True, exist_ok=True)
     fade = cfg["crossfade_seconds"]
-    tracks = [(p, d) for p in files if (d := duration(p)) > fade * 3]
     chosen = pick_tracks(cfg, tracks)
 
     # Each track starts `fade` seconds before the previous one ends; the on-screen
@@ -203,33 +213,28 @@ def main():
     total = t + fade
     switches = [0.0] + [s + fade / 2 for s in starts[1:]]
     names = [display_name(p) for p, _ in chosen]
-    print(f"{len(chosen)} tracks, {total / 60:.1f} min")
+    print(f"[{video_cfg['id']}] {len(chosen)} tracks, {total / 60:.1f} min | {theme['cover_title']}")
 
-    history = json.loads(HISTORY.read_text(encoding="utf-8")) if HISTORY.exists() else []
-    all_themes = themes.load()
-    meta = themes.for_date(all_themes, today)
-    scheduled = meta is not None
-    if not scheduled:
-        print(f"No theme scheduled for {today}, using fallback")
-        meta = themes.fallback(today)
-    # One copyright-free photo from the web for today's theme; the bundled images
+    # One copyright-free photo from the web for the theme; the bundled images
     # are only a fallback when nothing suitable is found.
-    used_ids = {h["background_source"]["id"] for h in history if h.get("background_source")}
-    fetched = fetch_background.fetch(meta, used_ids, work, today.toordinal())
+    fetched = fetch_background.fetch(theme, used_bg_ids, work, today.toordinal() * 10 + len(used_bg_ids))
     if fetched:
         background, background_source = fetched
+        used_bg_ids.add(background_source["id"])
     else:
         background_source = None
-        background = ROOT / cfg["backgrounds_dir"] / meta.get("background", "")
+        background = ROOT / cfg["backgrounds_dir"] / theme.get("background", "")
         if not background.is_file():
             background = pick_background(cfg, history)
-    print(f"Theme: {meta['cover_title']} | {meta['youtube_title']}")
     print(f"Background: {background_source['credit'] if background_source else background.name}")
 
-    base = f"{today:%Y-%m-%d}_{slug(meta['cover_title'])}"
+    base = f"{today:%Y-%m-%d}_{video_cfg['id']}_{slug(theme['cover_title'])}"
     bg = load_background(cfg, background)
-    cover = out_dir / f"{base}_cover.jpg"
-    make_cover(bg, meta["cover_title"], meta["cover_subtitle"], cover)
+    covers = {}
+    for lang in cfg["languages"]:
+        loc = themes.localized(theme, lang)
+        covers[lang] = out_dir / f"{base}_{lang}_cover.jpg"
+        make_cover(bg, loc["cover_title"], loc["cover_subtitle"], covers[lang])
 
     frames = []
     for i, name in enumerate(names):
@@ -238,8 +243,10 @@ def main():
         frames.append(frame)
 
     # Image sequence for the concat demuxer: cover first, then one frame per track.
+    # Both language versions share this video, which opens on the English cover;
+    # each upload gets its own language's cover as the thumbnail.
     cover_s = cfg["cover_seconds"]
-    segments = [(cover, cover_s)]
+    segments = [(covers.get("en") or covers[cfg["languages"][0]], cover_s)]
     for i, frame in enumerate(frames):
         start = max(switches[i], cover_s)
         end = switches[i + 1] if i + 1 < len(frames) else total
@@ -266,35 +273,80 @@ def main():
         "-c:a", "copy", "-t", f"{total:.3f}", "-movflags", "+faststart", str(video),
     ])
 
+    hour, minute = map(int, video_cfg["publish"].split(":"))
+    publish_at = datetime.datetime.combine(
+        today, datetime.time(hour, minute), tzinfo=ZoneInfo(cfg["timezone"])
+    ).isoformat()
     chapters = "\n".join(f"{timestamp(s)} {n}" for s, n in zip(switches, names))
-    description = (
-        f"{meta['description'].strip()}\n\n{themes.call_to_action(today)}\n\n"
-        f"Tracklist\n{chapters}\n\n"
-        + (f"{background_source['credit']}\n\n" if background_source else "")
-        + " ".join(meta["hashtags"])
-    )
-    tags = themes.all_tags(meta)
-    (out_dir / f"{base}_description.txt").write_text(
-        f"TITLE\n{meta['youtube_title']}\n\nDESCRIPTION\n{description}\n\nTAGS\n{', '.join(tags)}\n",
-        encoding="utf-8",
-    )
+    files, versions = [video.name], {}
+    for lang in cfg["languages"]:
+        loc = themes.localized(theme, lang)
+        labels = themes.LABELS[lang]
+        credit = background_source["credit"].replace("Background photo", labels["photo"], 1) if background_source else ""
+        description = (
+            f"{loc['description'].strip()}\n\n{themes.call_to_action(today, lang)}\n\n"
+            f"{labels['tracklist']}\n{chapters}\n\n"
+            + (f"{credit}\n\n" if credit else "")
+            + " ".join(loc["hashtags"])
+        )
+        tags = themes.all_tags(theme, lang)
+        desc_file = out_dir / f"{base}_{lang}_description.txt"
+        desc_file.write_text(
+            f"TITLE\n{loc['youtube_title']}\n\nDESCRIPTION\n{description}\n\nTAGS\n{', '.join(tags)}\n\n"
+            f"LANGUAGE\n{lang}\n\nPUBLISH_AT\n{publish_at}\n",
+            encoding="utf-8",
+        )
+        versions[lang] = {"youtube_title": loc["youtube_title"], "description": description, "tags": tags}
+        files += [covers[lang].name, desc_file.name]
 
-    history.append({
-        **meta,
+    print(f"Done: {video}")
+    return {
+        **theme,
         "date": today.isoformat(),
-        "description": description,
-        "tags": tags,
+        "video": video_cfg["id"],
+        "publish_at": publish_at,
+        "description": versions["en"]["description"] if "en" in versions else "",
+        "tags": versions["en"]["tags"] if "en" in versions else [],
+        "versions": versions,
         "tracks": names,
         "background": background_source["image_url"] if background_source else background.name,
         "background_source": background_source,
         "duration_seconds": round(total),
-        "files": [video.name, cover.name, f"{base}_description.txt"],
+        "files": files,
         "scheduled_theme": scheduled,
-        "themes_remaining": themes.remaining(all_themes, today),
-    })
-    HISTORY.parent.mkdir(exist_ok=True)
-    HISTORY.write_text(json.dumps(history, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"Done: {video}")
+    }
+
+
+def main():
+    cfg = json.loads((ROOT / "config.json").read_text(encoding="utf-8"))
+    today = datetime.datetime.now(ZoneInfo(cfg["timezone"])).date()
+    music_dir = ROOT / cfg["music_dir"]
+    out_dir = ROOT / cfg["output_dir"]
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    files = sorted(p for p in music_dir.rglob("*") if p.suffix.lower() in AUDIO_EXT)
+    if not files:
+        sys.exit(f"No audio files found in {music_dir}")
+    fade = cfg["crossfade_seconds"]
+    tracks = [(p, d) for p in files if (d := duration(p)) > fade * 3]
+    print(f"Music library: {len(files)} files")
+
+    history = json.loads(HISTORY.read_text(encoding="utf-8")) if HISTORY.exists() else []
+    dated, pool = themes.load(), themes.load_pool()
+    used_titles = {h["cover_title"] for h in history}
+    used_bg_ids = {h["background_source"]["id"] for h in history if h.get("background_source")}
+
+    for video_cfg in cfg["videos"]:
+        theme, scheduled = pick_theme(video_cfg, today, dated, pool, used_titles)
+        entry = make_one(cfg, today, video_cfg, tracks, theme, scheduled, history, used_bg_ids, out_dir)
+        used_titles.add(theme["cover_title"])
+        entry["library_size"] = len(files)
+        entry["themes_remaining"] = themes.remaining(dated, today)
+        entry["pool_remaining"] = themes.pool_remaining(pool, used_titles)
+        history.append(entry)
+        # Save after each video so a later failure keeps the record of the finished ones.
+        HISTORY.parent.mkdir(exist_ok=True)
+        HISTORY.write_text(json.dumps(history, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
 if __name__ == "__main__":
