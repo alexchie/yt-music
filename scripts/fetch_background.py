@@ -34,6 +34,8 @@ def search(query):
         "aspect_ratio": "wide",
         "size": "large",
         "mature": "false",
+        # These sources only hand out small previews (960-1024 px), never the original.
+        "excluded_source": "rawpixel,stocksnap",
         "page_size": 20,
     })
     return json.loads(_get(f"{API}?{params}"))["results"]
@@ -81,7 +83,7 @@ def fetch(theme, used_ids, out_dir, seed):
             print(f"Openverse search failed for {query!r}: {e}")
             continue
         rng.shuffle(results)
-        for result in results[:8]:
+        for result in results[:6]:
             try:
                 data = _get(result["url"], timeout=60)
             except Exception as e:
