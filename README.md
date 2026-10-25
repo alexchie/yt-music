@@ -57,10 +57,10 @@ repo → Settings → Secrets and variables → Actions → New repository secre
 5. 在自己的電腦執行：
    ```
    pip install google-auth-oauthlib
-   python scripts/get_youtube_token.py client_secret.json
+   python scripts/get_youtube_token.py
    ```
    瀏覽器會跳出登入畫面：選 YouTube 頻道所在的帳號（看到「Google 尚未驗證這個應用程式」就按「進階 → 前往」）。
-   終端機會印出三個值。
+   先貼上 OAuth 用戶端 ID 和密碼（或在指令後面加上 `client_secret.json` 的路徑），登入後終端機會印出三個值。
 6. 在 GitHub Secrets 新增 `YT_CLIENT_ID`、`YT_CLIENT_SECRET`、`YT_REFRESH_TOKEN`。
 7. （選填）在 Variables 新增 `YT_PRIVACY`：`public`（預設）、`unlisted` 或 `private`。
 
