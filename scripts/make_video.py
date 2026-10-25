@@ -19,6 +19,7 @@ from zoneinfo import ZoneInfo
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import fetch_background  # noqa: E402
 import themes  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -211,11 +212,19 @@ def main():
     if not scheduled:
         print(f"No theme scheduled for {today}, using fallback")
         meta = themes.fallback(today)
-    background = ROOT / cfg["backgrounds_dir"] / meta.get("background", "")
-    if not background.is_file():
-        background = pick_background(cfg, history)
+    # One copyright-free photo from the web for today's theme; the bundled images
+    # are only a fallback when nothing suitable is found.
+    used_ids = {h["background_source"]["id"] for h in history if h.get("background_source")}
+    fetched = fetch_background.fetch(meta, used_ids, work, today.toordinal())
+    if fetched:
+        background, background_source = fetched
+    else:
+        background_source = None
+        background = ROOT / cfg["backgrounds_dir"] / meta.get("background", "")
+        if not background.is_file():
+            background = pick_background(cfg, history)
     print(f"Theme: {meta['cover_title']} | {meta['youtube_title']}")
-    print(f"Background: {background.name}")
+    print(f"Background: {background_source['credit'] if background_source else background.name}")
 
     base = f"{today:%Y-%m-%d}_{slug(meta['cover_title'])}"
     bg = load_background(cfg, background)
@@ -252,13 +261,17 @@ def main():
         "-map", "0:v", "-map", "1:a",
         "-vf", f"fps={cfg['fps']},format=yuv420p",
         "-c:v", "libx264", "-preset", "veryfast", "-tune", "stillimage", "-crf", "22",
-        "-c:a", "copy", "-shortest", "-movflags", "+faststart", str(video),
+        # An explicit length instead of -shortest: newer ffmpeg versions can hang at
+        # the end of a still-image concat when waiting for -shortest to trigger.
+        "-c:a", "copy", "-t", f"{total:.3f}", "-movflags", "+faststart", str(video),
     ])
 
     chapters = "\n".join(f"{timestamp(s)} {n}" for s, n in zip(switches, names))
     description = (
         f"{meta['description'].strip()}\n\n{themes.call_to_action(today)}\n\n"
-        f"Tracklist\n{chapters}\n\n{' '.join(meta['hashtags'])}"
+        f"Tracklist\n{chapters}\n\n"
+        + (f"{background_source['credit']}\n\n" if background_source else "")
+        + " ".join(meta["hashtags"])
     )
     tags = themes.all_tags(meta)
     (out_dir / f"{base}_description.txt").write_text(
@@ -272,7 +285,8 @@ def main():
         "description": description,
         "tags": tags,
         "tracks": names,
-        "background": background.name,
+        "background": background_source["image_url"] if background_source else background.name,
+        "background_source": background_source,
         "duration_seconds": round(total),
         "files": [video.name, cover.name, f"{base}_description.txt"],
         "scheduled_theme": scheduled,
