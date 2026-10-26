@@ -55,5 +55,53 @@
     "publish_at": "2026-10-26T20:00:00+08:00",
     "thumbnail": "set",
     "uploaded_at": "2026-10-25T20:06:49+00:00"
+  },
+  {
+    "file": "2026-10-27_am_Candlelit-October-Night_en_description.txt",
+    "video_file": "2026-10-27_am_Candlelit-October-Night.mp4",
+    "lang": "en",
+    "video_id": "7DCnx_-VVmg",
+    "url": "https://youtu.be/7DCnx_-VVmg",
+    "title": "candlelit october night, the house creaking softly 🕯 cozy dark lofi for spooky season",
+    "privacy": "private",
+    "publish_at": "2026-10-27T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-10-26T22:05:46+00:00"
+  },
+  {
+    "file": "2026-10-27_am_Candlelit-October-Night_zh_description.txt",
+    "video_file": "2026-10-27_am_Candlelit-October-Night.mp4",
+    "lang": "zh",
+    "video_id": "yp7Ijtgx6kM",
+    "url": "https://youtu.be/yp7Ijtgx6kM",
+    "title": "燭光搖曳的十月夜晚 🕯️ 溫柔萬聖節 lofi｜一小時",
+    "privacy": "private",
+    "publish_at": "2026-10-27T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-10-26T22:05:56+00:00"
+  },
+  {
+    "file": "2026-10-27_pm_Autumn-Caf-Corner_en_description.txt",
+    "video_file": "2026-10-27_pm_Autumn-Caf-Corner.mp4",
+    "lang": "en",
+    "video_id": "8XfO63GAwC8",
+    "url": "https://youtu.be/8XfO63GAwC8",
+    "title": "autumn café corner ☕ afternoon lofi for reading and work",
+    "privacy": "private",
+    "publish_at": "2026-10-27T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-10-26T22:06:07+00:00"
+  },
+  {
+    "file": "2026-10-27_pm_Autumn-Caf-Corner_zh_description.txt",
+    "video_file": "2026-10-27_pm_Autumn-Caf-Corner.mp4",
+    "lang": "zh",
+    "video_id": "tWHjSqazQ28",
+    "url": "https://youtu.be/tWHjSqazQ28",
+    "title": "秋天的咖啡館 ☕ 午後 lofi 歌單｜讀書工作專用一小時",
+    "privacy": "private",
+    "publish_at": "2026-10-27T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-10-26T22:06:16+00:00"
   }
 ]
