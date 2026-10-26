@@ -26,19 +26,17 @@ def _get(url, timeout=30):
         return resp.read()
 
 
-def search(query):
-    params = urllib.parse.urlencode({
-        "q": query,
-        "license": "cc0,pdm",
-        "category": "photograph",
-        "aspect_ratio": "wide",
-        "size": "large",
-        "mature": "false",
-        # These sources only hand out small previews (960-1024 px), never the original.
-        "excluded_source": "rawpixel,stocksnap",
-        "page_size": 20,
-    })
-    return json.loads(_get(f"{API}?{params}"))["results"]
+# These sources only hand out small previews (960-1024 px), never the original.
+SMALL_PREVIEW_SOURCES = {"rawpixel", "stocksnap"}
+
+
+def search(query, strict=True):
+    """Strict asks Openverse for wide, large photographs; loose only for the license."""
+    params = {"q": query, "license": "cc0,pdm", "mature": "false", "page_size": 20}
+    if strict:
+        params.update(category="photograph", aspect_ratio="wide", size="large")
+    results = json.loads(_get(f"{API}?{urllib.parse.urlencode(params)}"))["results"]
+    return [r for r in results if r.get("source") not in SMALL_PREVIEW_SOURCES]
 
 
 def queries(theme):
@@ -53,14 +51,14 @@ def queries(theme):
 
 
 def usable(result, used_ids):
+    """Size metadata is often missing, so only reject what is known to be too small;
+    the downloaded file is checked again."""
+    if result.get("id") in used_ids or not result.get("url"):
+        return False
     w, h = result.get("width") or 0, result.get("height") or 0
-    return (
-        result.get("id") not in used_ids
-        and result.get("url")
-        and w >= MIN_WIDTH
-        and h
-        and w / h >= MIN_RATIO
-    )
+    if w and w < MIN_WIDTH:
+        return False
+    return not (w and h and w / h < MIN_RATIO)
 
 
 def credit(result):
@@ -76,12 +74,14 @@ def credit(result):
 def fetch(theme, used_ids, out_dir, seed):
     """Download one image for the theme. Returns (path, info dict) or None."""
     rng = random.Random(seed)
-    for query in queries(theme):
+    for strict, query in [(True, q) for q in queries(theme)] + [(False, q) for q in queries(theme)]:
         try:
-            results = [r for r in search(query) if usable(r, used_ids)]
+            found = search(query, strict)
         except Exception as e:  # network or API error: try the next query, then give up
             print(f"Openverse search failed for {query!r}: {e}")
             continue
+        results = [r for r in found if usable(r, used_ids)]
+        print(f"Openverse {'strict' if strict else 'loose'} {query!r}: {len(found)} results, {len(results)} usable")
         rng.shuffle(results)
         for result in results[:6]:
             try:
@@ -94,11 +94,11 @@ def fetch(theme, used_ids, out_dir, seed):
             # Some sources only serve a small preview even when the original is large.
             try:
                 with Image.open(path) as img:
-                    real_width = img.width
+                    real_width, real_height = img.size
             except Exception:
-                real_width = 0
-            if real_width < MIN_WIDTH:
-                print(f"Skipped {result['url']}: only {real_width}px wide")
+                real_width, real_height = 0, 1
+            if real_width < MIN_WIDTH or real_width / real_height < MIN_RATIO:
+                print(f"Skipped {result['url']}: {real_width}x{real_height}")
                 continue
             print(f"Background from Openverse ({query!r}): {result.get('title')} - {result.get('foreign_landing_url')}")
             return path, {
