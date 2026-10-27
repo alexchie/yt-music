@@ -108,12 +108,12 @@ repo → Actions → Daily video → Run workflow，成功後 Daily YouTube uplo
 | `cover_seconds` | 開頭封面顯示秒數 |
 
 ## 背景圖
-每天從 [Openverse](https://openverse.org/) 搜尋一張和主題相關、**CC0 或公有領域**（不需標示也可商用）的寬幅照片，
+每天先從 [Wikimedia Commons](https://commons.wikimedia.org/)、再從 [Openverse](https://openverse.org/) 搜尋一張和主題相關、**CC0 或公有領域**（不需標示也可商用）的寬幅照片，
 用主題的 `image_query`（選填，英文關鍵字）或封面標題搜尋，用過的照片不會再用。
 照片出處會加在 YouTube 說明的曲目表後面，例如：
-`Background photo: "Rainy window" by Jane (CC0 1.0) via Flickr: https://...`
+`Background photo: "Rainy window" by Jane (CC0 1.0) via Wikimedia Commons: https://...`
 
-找不到合適的照片或連不上 Openverse 時，改用 `assets/backgrounds/` 裡的圖（由主題庫的 `background` 決定）。
+兩邊都找不到合適的照片或連不上時，改用 `assets/backgrounds/` 裡的圖（由主題庫的 `background` 決定）。
 建議 16:9、至少 1600×900；比例不同會自動從中間裁切。
 
 ## 每天的產出
