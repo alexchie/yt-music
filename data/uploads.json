@@ -103,5 +103,53 @@
     "publish_at": "2026-10-27T20:00:00+08:00",
     "thumbnail": "set",
     "uploaded_at": "2026-10-26T22:06:16+00:00"
+  },
+  {
+    "file": "2026-10-28_am_Pumpkin-Spice-Pause_en_description.txt",
+    "video_file": "2026-10-28_am_Pumpkin-Spice-Pause.mp4",
+    "lang": "en",
+    "video_id": "8h_XMa71Uoo",
+    "url": "https://youtu.be/8h_XMa71Uoo",
+    "title": "a pumpkin spice latte and ten quiet minutes 🎃 cozy lofi for a midweek pause",
+    "privacy": "private",
+    "publish_at": "2026-10-28T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-10-27T21:44:33+00:00"
+  },
+  {
+    "file": "2026-10-28_am_Pumpkin-Spice-Pause_zh_description.txt",
+    "video_file": "2026-10-28_am_Pumpkin-Spice-Pause.mp4",
+    "lang": "zh",
+    "video_id": "M_8omp9jPPY",
+    "url": "https://youtu.be/M_8omp9jPPY",
+    "title": "一杯南瓜拿鐵的時間 🎃 週間放鬆 lofi｜一小時",
+    "privacy": "private",
+    "publish_at": "2026-10-28T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-10-27T21:44:41+00:00"
+  },
+  {
+    "file": "2026-10-28_pm_Midnight-Desk_en_description.txt",
+    "video_file": "2026-10-28_pm_Midnight-Desk.mp4",
+    "lang": "en",
+    "video_id": "wR5ZQAyxsGQ",
+    "url": "https://youtu.be/wR5ZQAyxsGQ",
+    "title": "midnight desk 🌙 late night lofi for studying and writing",
+    "privacy": "private",
+    "publish_at": "2026-10-28T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-10-27T21:44:52+00:00"
+  },
+  {
+    "file": "2026-10-28_pm_Midnight-Desk_zh_description.txt",
+    "video_file": "2026-10-28_pm_Midnight-Desk.mp4",
+    "lang": "zh",
+    "video_id": "P0zlAaRx-Rw",
+    "url": "https://youtu.be/P0zlAaRx-Rw",
+    "title": "深夜書桌前的 lofi 🌙 熬夜讀書・寫報告專用｜一小時純音樂",
+    "privacy": "private",
+    "publish_at": "2026-10-28T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-10-27T21:45:00+00:00"
   }
 ]
