@@ -151,5 +151,53 @@
     "publish_at": "2026-10-28T20:00:00+08:00",
     "thumbnail": "set",
     "uploaded_at": "2026-10-27T21:45:00+00:00"
+  },
+  {
+    "file": "2026-10-29_am_Last-Warm-Days_en_description.txt",
+    "video_file": "2026-10-29_am_Last-Warm-Days.mp4",
+    "lang": "en",
+    "video_id": "Ff8NGomHhwA",
+    "url": "https://youtu.be/Ff8NGomHhwA",
+    "title": "the last warm days of october 🌞 sunny lofi beats to hold on to the light",
+    "privacy": "private",
+    "publish_at": "2026-10-29T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-10-28T21:58:04+00:00"
+  },
+  {
+    "file": "2026-10-29_am_Last-Warm-Days_zh_description.txt",
+    "video_file": "2026-10-29_am_Last-Warm-Days.mp4",
+    "lang": "zh",
+    "video_id": "RHhkjE3Fiao",
+    "url": "https://youtu.be/RHhkjE3Fiao",
+    "title": "十月最後的暖陽 ☀️ 留住陽光的 lofi｜一小時純音樂",
+    "privacy": "private",
+    "publish_at": "2026-10-29T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-10-28T21:58:11+00:00"
+  },
+  {
+    "file": "2026-10-29_pm_Ginkgo-Avenue_en_description.txt",
+    "video_file": "2026-10-29_pm_Ginkgo-Avenue.mp4",
+    "lang": "en",
+    "video_id": "ZW-volqTi-k",
+    "url": "https://youtu.be/ZW-volqTi-k",
+    "title": "ginkgo avenue 🍂 golden autumn lofi for a slow walk",
+    "privacy": "private",
+    "publish_at": "2026-10-29T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-10-28T21:58:19+00:00"
+  },
+  {
+    "file": "2026-10-29_pm_Ginkgo-Avenue_zh_description.txt",
+    "video_file": "2026-10-29_pm_Ginkgo-Avenue.mp4",
+    "lang": "zh",
+    "video_id": "nB1jf-kRZeg",
+    "url": "https://youtu.be/nB1jf-kRZeg",
+    "title": "銀杏大道散步 🍂 金黃秋日 lofi｜一小時放鬆純音樂",
+    "privacy": "private",
+    "publish_at": "2026-10-29T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-10-28T21:58:30+00:00"
   }
 ]
