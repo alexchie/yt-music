@@ -199,5 +199,53 @@
     "publish_at": "2026-10-29T20:00:00+08:00",
     "thumbnail": "set",
     "uploaded_at": "2026-10-28T21:58:30+00:00"
+  },
+  {
+    "file": "2026-10-30_am_Friday-Night-In_en_description.txt",
+    "video_file": "2026-10-30_am_Friday-Night-In.mp4",
+    "lang": "en",
+    "video_id": "OLvMUXSGJsU",
+    "url": "https://youtu.be/OLvMUXSGJsU",
+    "title": "friday night in, city lights through the curtains 🌃 lofi beats for staying home",
+    "privacy": "private",
+    "publish_at": "2026-10-30T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-10-29T22:03:39+00:00"
+  },
+  {
+    "file": "2026-10-30_am_Friday-Night-In_zh_description.txt",
+    "video_file": "2026-10-30_am_Friday-Night-In.mp4",
+    "lang": "zh",
+    "video_id": "Wr2pP2Ns-2Y",
+    "url": "https://youtu.be/Wr2pP2Ns-2Y",
+    "title": "週五晚上宅在家 🌃 城市夜景 lofi｜一小時 chill",
+    "privacy": "private",
+    "publish_at": "2026-10-30T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-10-29T22:03:46+00:00"
+  },
+  {
+    "file": "2026-10-30_pm_The-Old-Record-Store_en_description.txt",
+    "video_file": "2026-10-30_pm_The-Old-Record-Store.mp4",
+    "lang": "en",
+    "video_id": "2ZPoD_dldXY",
+    "url": "https://youtu.be/2ZPoD_dldXY",
+    "title": "the old record store 🎶 vintage vinyl lofi for a slow afternoon",
+    "privacy": "private",
+    "publish_at": "2026-10-30T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-10-29T22:03:55+00:00"
+  },
+  {
+    "file": "2026-10-30_pm_The-Old-Record-Store_zh_description.txt",
+    "video_file": "2026-10-30_pm_The-Old-Record-Store.mp4",
+    "lang": "zh",
+    "video_id": "qzQv3vWU8g0",
+    "url": "https://youtu.be/qzQv3vWU8g0",
+    "title": "老唱片行的午後 🎶 黑膠感 lofi｜懷舊放鬆一小時",
+    "privacy": "private",
+    "publish_at": "2026-10-30T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-10-29T22:04:01+00:00"
   }
 ]
