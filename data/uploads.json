@@ -247,5 +247,53 @@
     "publish_at": "2026-10-30T20:00:00+08:00",
     "thumbnail": "set",
     "uploaded_at": "2026-10-29T22:04:01+00:00"
+  },
+  {
+    "file": "2026-10-31_am_Hallows-Eve-at-Home_en_description.txt",
+    "video_file": "2026-10-31_am_Hallows-Eve-at-Home.mp4",
+    "lang": "en",
+    "video_id": "njFmhGpuhoo",
+    "url": "https://youtu.be/njFmhGpuhoo",
+    "title": "halloween night at home, candles lit and the porch light on 👻 cozy spooky lofi",
+    "privacy": "private",
+    "publish_at": "2026-10-31T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-10-30T21:52:35+00:00"
+  },
+  {
+    "file": "2026-10-31_am_Hallows-Eve-at-Home_zh_description.txt",
+    "video_file": "2026-10-31_am_Hallows-Eve-at-Home.mp4",
+    "lang": "zh",
+    "video_id": "iHOy_5i8z5o",
+    "url": "https://youtu.be/iHOy_5i8z5o",
+    "title": "萬聖節在家過 🎃 微驚悚溫馨 lofi｜一小時純音樂",
+    "privacy": "private",
+    "publish_at": "2026-10-31T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-10-30T21:52:51+00:00"
+  },
+  {
+    "file": "2026-10-31_pm_Morning-Balcony_en_description.txt",
+    "video_file": "2026-10-31_pm_Morning-Balcony.mp4",
+    "lang": "en",
+    "video_id": "wO8wU8oGkM8",
+    "url": "https://youtu.be/wO8wU8oGkM8",
+    "title": "morning balcony ☀️ bright lofi to start the day",
+    "privacy": "private",
+    "publish_at": "2026-10-31T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-10-30T21:53:04+00:00"
+  },
+  {
+    "file": "2026-10-31_pm_Morning-Balcony_zh_description.txt",
+    "video_file": "2026-10-31_pm_Morning-Balcony.mp4",
+    "lang": "zh",
+    "video_id": "iiqAY5MzLJc",
+    "url": "https://youtu.be/iiqAY5MzLJc",
+    "title": "清晨陽台 lofi ☀️ 早晨起床・晨讀歌單｜一小時輕快純音樂",
+    "privacy": "private",
+    "publish_at": "2026-10-31T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-10-30T21:53:23+00:00"
   }
 ]
