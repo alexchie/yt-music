@@ -295,5 +295,53 @@
     "publish_at": "2026-10-31T20:00:00+08:00",
     "thumbnail": "set",
     "uploaded_at": "2026-10-30T21:53:23+00:00"
+  },
+  {
+    "file": "2026-11-01_am_Hello-November_en_description.txt",
+    "video_file": "2026-11-01_am_Hello-November.mp4",
+    "lang": "en",
+    "video_id": "8ekLBrzEGGg",
+    "url": "https://youtu.be/8ekLBrzEGGg",
+    "title": "hello november 🍂 lofi beats for a calm, fresh start to the month",
+    "privacy": "private",
+    "publish_at": "2026-11-01T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-10-31T20:41:20+00:00"
+  },
+  {
+    "file": "2026-11-01_am_Hello-November_zh_description.txt",
+    "video_file": "2026-11-01_am_Hello-November.mp4",
+    "lang": "zh",
+    "video_id": "Kt94cwbhDX4",
+    "url": "https://youtu.be/Kt94cwbhDX4",
+    "title": "你好十一月 🍂 新的一個月 lofi｜清爽一小時",
+    "privacy": "private",
+    "publish_at": "2026-11-01T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-10-31T20:41:32+00:00"
+  },
+  {
+    "file": "2026-11-01_pm_Mountain-Cabin-Fire_en_description.txt",
+    "video_file": "2026-11-01_pm_Mountain-Cabin-Fire.mp4",
+    "lang": "en",
+    "video_id": "0-xwgSHFAC0",
+    "url": "https://youtu.be/0-xwgSHFAC0",
+    "title": "mountain cabin fireplace 🔥 warm winter lofi",
+    "privacy": "private",
+    "publish_at": "2026-11-01T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-10-31T20:41:56+00:00"
+  },
+  {
+    "file": "2026-11-01_pm_Mountain-Cabin-Fire_zh_description.txt",
+    "video_file": "2026-11-01_pm_Mountain-Cabin-Fire.mp4",
+    "lang": "zh",
+    "video_id": "upfaukz07D4",
+    "url": "https://youtu.be/upfaukz07D4",
+    "title": "山中小屋的壁爐 🔥 冬日 lofi｜溫暖放鬆一小時純音樂",
+    "privacy": "private",
+    "publish_at": "2026-11-01T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-10-31T20:42:18+00:00"
   }
 ]
