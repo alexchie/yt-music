@@ -40,6 +40,13 @@ jobs:
       - name: Download music library
         run: rclone copy "gdrive:$DRIVE_LIBRARY_FOLDER" music --transfers 8
 
+      # Report-only: lists songs whose later part gains a clashing second chord layer.
+      - name: Check music library for clashing layers
+        continue-on-error: true
+        run: |
+          python scripts/check_audio.py music | tee audio_check.txt
+          { echo '### Audio check'; echo '```'; cat audio_check.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Make video
         run: python scripts/make_video.py
 
