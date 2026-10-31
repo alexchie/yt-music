@@ -107,6 +107,18 @@ repo → Actions → Daily video → Run workflow，成功後 Daily YouTube uplo
 | `crossfade_seconds` | 歌曲間淡入淡出秒數 |
 | `cover_seconds` | 開頭封面顯示秒數 |
 
+## 檢查歌曲後段的雜音（第二層和弦）
+有些生成的歌前面正常，後段卻多出一層不同調、一直刷和弦的樂器，聽起來像兩個音軌疊在一起。
+`scripts/check_audio.py` 會拿每首歌的開頭當基準，找出後段「和聲突然變混濁、不在調上」持續 20 秒以上的區段。
+每天製作影片前會自動檢查整個音樂庫，結果寫在 Actions 該次執行的 Summary（只報告，不會擋下影片）。
+
+自己的電腦也能跑（需要 ffmpeg 和 `pip install numpy`）：
+```
+python scripts/check_audio.py 音樂資料夾/
+python scripts/check_audio.py 影片.mp4 --chapters 影片_en_description.txt   # 依曲目時間軸逐首檢查
+```
+被標記（FLAG）的歌會列出可疑的時間範圍；確認有問題就把它從 Drive 的 `YT Music Library` 移除或換掉。
+
 ## 背景圖
 每天先從 [Wikimedia Commons](https://commons.wikimedia.org/)、再從 [Openverse](https://openverse.org/) 搜尋一張和主題相關、**CC0 或公有領域**（不需標示也可商用）的寬幅照片，
 用主題的 `image_query`（選填，英文關鍵字）或封面標題搜尋，用過的照片不會再用。
