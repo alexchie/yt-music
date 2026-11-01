@@ -343,5 +343,53 @@
     "publish_at": "2026-11-01T20:00:00+08:00",
     "thumbnail": "set",
     "uploaded_at": "2026-10-31T20:42:18+00:00"
+  },
+  {
+    "file": "2026-11-02_am_Grey-Sky-Focus_en_description.txt",
+    "video_file": "2026-11-02_am_Grey-Sky-Focus.mp4",
+    "lang": "en",
+    "video_id": "UfjbzoGH2y0",
+    "url": "https://youtu.be/UfjbzoGH2y0",
+    "title": "grey november sky and a long to-do list ☁ steady lofi beats for deep work",
+    "privacy": "private",
+    "publish_at": "2026-11-02T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-01T21:34:14+00:00"
+  },
+  {
+    "file": "2026-11-02_am_Grey-Sky-Focus_zh_description.txt",
+    "video_file": "2026-11-02_am_Grey-Sky-Focus.mp4",
+    "lang": "zh",
+    "video_id": "Dk3kAjxBYfo",
+    "url": "https://youtu.be/Dk3kAjxBYfo",
+    "title": "陰天的週一 ☁️ 穩定專注 lofi｜工作讀書一小時",
+    "privacy": "private",
+    "publish_at": "2026-11-02T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-01T21:34:23+00:00"
+  },
+  {
+    "file": "2026-11-02_pm_City-Lights-Window_en_description.txt",
+    "video_file": "2026-11-02_pm_City-Lights-Window.mp4",
+    "lang": "en",
+    "video_id": "7mSBwHJ9Zhs",
+    "url": "https://youtu.be/7mSBwHJ9Zhs",
+    "title": "city lights after work 🌃 chill lofi to unwind",
+    "privacy": "private",
+    "publish_at": "2026-11-02T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-01T21:34:37+00:00"
+  },
+  {
+    "file": "2026-11-02_pm_City-Lights-Window_zh_description.txt",
+    "video_file": "2026-11-02_pm_City-Lights-Window.mp4",
+    "lang": "zh",
+    "video_id": "a8dI7K_5y3I",
+    "url": "https://youtu.be/a8dI7K_5y3I",
+    "title": "城市夜景 lofi 🌃 下班後的放鬆時光｜一小時 chill beats",
+    "privacy": "private",
+    "publish_at": "2026-11-02T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-01T21:34:49+00:00"
   }
 ]
