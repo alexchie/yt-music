@@ -391,5 +391,53 @@
     "publish_at": "2026-11-02T20:00:00+08:00",
     "thumbnail": "set",
     "uploaded_at": "2026-11-01T21:34:49+00:00"
+  },
+  {
+    "file": "2026-11-03_am_November-Rain-Loft_en_description.txt",
+    "video_file": "2026-11-03_am_November-Rain-Loft.mp4",
+    "lang": "en",
+    "video_id": "S24Zt9QacS4",
+    "url": "https://youtu.be/S24Zt9QacS4",
+    "title": "the first cold rain of november hits the loft windows 🌧 lofi beats for a long afternoon",
+    "privacy": "public",
+    "publish_at": null,
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-03T00:06:32+00:00"
+  },
+  {
+    "file": "2026-11-03_am_November-Rain-Loft_zh_description.txt",
+    "video_file": "2026-11-03_am_November-Rain-Loft.mp4",
+    "lang": "zh",
+    "video_id": "C_lFP9ixSdI",
+    "url": "https://youtu.be/C_lFP9ixSdI",
+    "title": "十一月第一場冷雨 🌧️ 閣樓 lofi｜一小時純音樂",
+    "privacy": "public",
+    "publish_at": null,
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-03T00:06:47+00:00"
+  },
+  {
+    "file": "2026-11-03_pm_Seaside-Dusk_en_description.txt",
+    "video_file": "2026-11-03_pm_Seaside-Dusk.mp4",
+    "lang": "en",
+    "video_id": "GwAx9YwP4Kg",
+    "url": "https://youtu.be/GwAx9YwP4Kg",
+    "title": "seaside dusk 🌅 sunset lofi to watch the waves",
+    "privacy": "private",
+    "publish_at": "2026-11-03T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-03T00:07:00+00:00"
+  },
+  {
+    "file": "2026-11-03_pm_Seaside-Dusk_zh_description.txt",
+    "video_file": "2026-11-03_pm_Seaside-Dusk.mp4",
+    "lang": "zh",
+    "video_id": "trC19_UUBfU",
+    "url": "https://youtu.be/trC19_UUBfU",
+    "title": "海邊黃昏 lofi 🌅 看夕陽時聽的歌單｜一小時放鬆純音樂",
+    "privacy": "private",
+    "publish_at": "2026-11-03T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-03T00:07:12+00:00"
   }
 ]
