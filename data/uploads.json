@@ -439,5 +439,53 @@
     "publish_at": "2026-11-03T20:00:00+08:00",
     "thumbnail": "set",
     "uploaded_at": "2026-11-03T00:07:12+00:00"
+  },
+  {
+    "file": "2026-11-04_am_First-Frost-on-the-Glass_en_description.txt",
+    "video_file": "2026-11-04_am_First-Frost-on-the-Glass.mp4",
+    "lang": "en",
+    "video_id": "jb43CCUY3Sw",
+    "url": "https://youtu.be/jb43CCUY3Sw",
+    "title": "first frost on the glass and the lake perfectly still ❄ calm lofi for cold mornings",
+    "privacy": "private",
+    "publish_at": "2026-11-04T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-03T22:38:38+00:00"
+  },
+  {
+    "file": "2026-11-04_am_First-Frost-on-the-Glass_zh_description.txt",
+    "video_file": "2026-11-04_am_First-Frost-on-the-Glass.mp4",
+    "lang": "zh",
+    "video_id": "0aOvF2TVwBE",
+    "url": "https://youtu.be/0aOvF2TVwBE",
+    "title": "玻璃上的第一層霜 ❄️ 寒冷早晨 lofi｜一小時",
+    "privacy": "private",
+    "publish_at": "2026-11-04T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-03T22:38:52+00:00"
+  },
+  {
+    "file": "2026-11-04_pm_Library-Corner_en_description.txt",
+    "video_file": "2026-11-04_pm_Library-Corner.mp4",
+    "lang": "en",
+    "video_id": "ojtVsoECRjY",
+    "url": "https://youtu.be/ojtVsoECRjY",
+    "title": "library corner 📚 quiet lofi for exam week",
+    "privacy": "private",
+    "publish_at": "2026-11-04T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-03T22:39:07+00:00"
+  },
+  {
+    "file": "2026-11-04_pm_Library-Corner_zh_description.txt",
+    "video_file": "2026-11-04_pm_Library-Corner.mp4",
+    "lang": "zh",
+    "video_id": "jti1Ff9c5Jw",
+    "url": "https://youtu.be/jti1Ff9c5Jw",
+    "title": "圖書館的午後 📚 安靜讀書 lofi｜考試週專用一小時",
+    "privacy": "private",
+    "publish_at": "2026-11-04T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-03T22:39:22+00:00"
   }
 ]
