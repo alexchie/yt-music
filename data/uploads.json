@@ -487,5 +487,53 @@
     "publish_at": "2026-11-04T20:00:00+08:00",
     "thumbnail": "set",
     "uploaded_at": "2026-11-03T22:39:22+00:00"
+  },
+  {
+    "file": "2026-11-05_am_Knit-Blanket-Afternoon_en_description.txt",
+    "video_file": "2026-11-05_am_Knit-Blanket-Afternoon.mp4",
+    "lang": "en",
+    "video_id": "VhlNxz1jvEY",
+    "url": "https://youtu.be/VhlNxz1jvEY",
+    "title": "knit blanket, warm tea and a slow afternoon 🧶 soft lofi beats to unwind",
+    "privacy": "private",
+    "publish_at": "2026-11-05T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-04T22:52:44+00:00"
+  },
+  {
+    "file": "2026-11-05_am_Knit-Blanket-Afternoon_zh_description.txt",
+    "video_file": "2026-11-05_am_Knit-Blanket-Afternoon.mp4",
+    "lang": "zh",
+    "video_id": "Mu_XrxkzHzs",
+    "url": "https://youtu.be/Mu_XrxkzHzs",
+    "title": "毛毯與熱茶的午後 🧶 慢慢的 lofi｜一小時放鬆",
+    "privacy": "private",
+    "publish_at": "2026-11-05T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-04T22:52:54+00:00"
+  },
+  {
+    "file": "2026-11-05_pm_Snowy-Window_en_description.txt",
+    "video_file": "2026-11-05_pm_Snowy-Window.mp4",
+    "lang": "en",
+    "video_id": "47OOJPz-2pc",
+    "url": "https://youtu.be/47OOJPz-2pc",
+    "title": "snowy window ❄️ cozy winter lofi with hot cocoa",
+    "privacy": "private",
+    "publish_at": "2026-11-05T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-04T22:53:03+00:00"
+  },
+  {
+    "file": "2026-11-05_pm_Snowy-Window_zh_description.txt",
+    "video_file": "2026-11-05_pm_Snowy-Window.mp4",
+    "lang": "zh",
+    "video_id": "Wa7VgCl422k",
+    "url": "https://youtu.be/Wa7VgCl422k",
+    "title": "下雪的窗邊 ❄️ 冬天 lofi 歌單｜溫暖放鬆一小時純音樂",
+    "privacy": "private",
+    "publish_at": "2026-11-05T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-04T22:53:09+00:00"
   }
 ]
