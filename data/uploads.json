@@ -535,5 +535,53 @@
     "publish_at": "2026-11-05T20:00:00+08:00",
     "thumbnail": "set",
     "uploaded_at": "2026-11-04T22:53:09+00:00"
+  },
+  {
+    "file": "2026-11-06_am_Cinnamon-Light_en_description.txt",
+    "video_file": "2026-11-06_am_Cinnamon-Light.mp4",
+    "lang": "en",
+    "video_id": "j5s0QFaLPs8",
+    "url": "https://youtu.be/j5s0QFaLPs8",
+    "title": "cinnamon light on a friday afternoon 🍂 warm lofi beats to wrap up the week",
+    "privacy": "private",
+    "publish_at": "2026-11-06T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-05T22:54:39+00:00"
+  },
+  {
+    "file": "2026-11-06_am_Cinnamon-Light_zh_description.txt",
+    "video_file": "2026-11-06_am_Cinnamon-Light.mp4",
+    "lang": "zh",
+    "video_id": "uPaAYuTr7lQ",
+    "url": "https://youtu.be/uPaAYuTr7lQ",
+    "title": "週五午後的肉桂色陽光 🍂 溫暖 lofi｜一小時",
+    "privacy": "private",
+    "publish_at": "2026-11-06T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-05T22:54:46+00:00"
+  },
+  {
+    "file": "2026-11-06_pm_Corner-Bakery_en_description.txt",
+    "video_file": "2026-11-06_pm_Corner-Bakery.mp4",
+    "lang": "en",
+    "video_id": "PPfl6XBaD9Q",
+    "url": "https://youtu.be/PPfl6XBaD9Q",
+    "title": "corner bakery 🥐 warm morning lofi",
+    "privacy": "private",
+    "publish_at": "2026-11-06T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-05T22:54:53+00:00"
+  },
+  {
+    "file": "2026-11-06_pm_Corner-Bakery_zh_description.txt",
+    "video_file": "2026-11-06_pm_Corner-Bakery.mp4",
+    "lang": "zh",
+    "video_id": "WxNSnB-ugYo",
+    "url": "https://youtu.be/WxNSnB-ugYo",
+    "title": "巷口麵包店 🥐 早晨 lofi｜溫暖輕快一小時純音樂",
+    "privacy": "private",
+    "publish_at": "2026-11-06T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-05T22:55:01+00:00"
   }
 ]
