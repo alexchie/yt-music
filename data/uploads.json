@@ -583,5 +583,53 @@
     "publish_at": "2026-11-06T20:00:00+08:00",
     "thumbnail": "set",
     "uploaded_at": "2026-11-05T22:55:01+00:00"
+  },
+  {
+    "file": "2026-11-07_am_Saturday-Tea-Ritual_en_description.txt",
+    "video_file": "2026-11-07_am_Saturday-Tea-Ritual.mp4",
+    "lang": "en",
+    "video_id": "bf7v9E48ouE",
+    "url": "https://youtu.be/bf7v9E48ouE",
+    "title": "a slow saturday tea ritual by the olive tree 🍵 mindful lofi beats",
+    "privacy": "private",
+    "publish_at": "2026-11-07T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-06T22:26:28+00:00"
+  },
+  {
+    "file": "2026-11-07_am_Saturday-Tea-Ritual_zh_description.txt",
+    "video_file": "2026-11-07_am_Saturday-Tea-Ritual.mp4",
+    "lang": "zh",
+    "video_id": "K4GIvsD8sto",
+    "url": "https://youtu.be/K4GIvsD8sto",
+    "title": "週六早晨的泡茶儀式 🍵 正念 lofi｜一小時純音樂",
+    "privacy": "private",
+    "publish_at": "2026-11-07T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-06T22:26:38+00:00"
+  },
+  {
+    "file": "2026-11-07_pm_Moonlit-Lake_en_description.txt",
+    "video_file": "2026-11-07_pm_Moonlit-Lake.mp4",
+    "lang": "en",
+    "video_id": "AF-6CDvx9wA",
+    "url": "https://youtu.be/AF-6CDvx9wA",
+    "title": "moonlit lake 🌕 calm lofi for falling asleep",
+    "privacy": "private",
+    "publish_at": "2026-11-07T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-06T22:26:50+00:00"
+  },
+  {
+    "file": "2026-11-07_pm_Moonlit-Lake_zh_description.txt",
+    "video_file": "2026-11-07_pm_Moonlit-Lake.mp4",
+    "lang": "zh",
+    "video_id": "hnvTx5YBaAk",
+    "url": "https://youtu.be/hnvTx5YBaAk",
+    "title": "月光湖畔 lofi 🌕 睡前放鬆歌單｜一小時助眠純音樂",
+    "privacy": "private",
+    "publish_at": "2026-11-07T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-06T22:27:01+00:00"
   }
 ]
