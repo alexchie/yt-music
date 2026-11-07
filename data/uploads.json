@@ -631,5 +631,53 @@
     "publish_at": "2026-11-07T20:00:00+08:00",
     "thumbnail": "set",
     "uploaded_at": "2026-11-06T22:27:01+00:00"
+  },
+  {
+    "file": "2026-11-08_am_Indoor-Jungle-Sunday_en_description.txt",
+    "video_file": "2026-11-08_am_Indoor-Jungle-Sunday.mp4",
+    "lang": "en",
+    "video_id": "F2PUkjvXkE0",
+    "url": "https://youtu.be/F2PUkjvXkE0",
+    "title": "repotting plants on a slow sunday 🪴 warm lofi beats for an indoor jungle",
+    "privacy": "private",
+    "publish_at": "2026-11-08T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-07T21:09:48+00:00"
+  },
+  {
+    "file": "2026-11-08_am_Indoor-Jungle-Sunday_zh_description.txt",
+    "video_file": "2026-11-08_am_Indoor-Jungle-Sunday.mp4",
+    "lang": "zh",
+    "video_id": "SOM270zXHlg",
+    "url": "https://youtu.be/SOM270zXHlg",
+    "title": "週日照顧植物 🌿 室內叢林 lofi｜一小時放鬆",
+    "privacy": "private",
+    "publish_at": "2026-11-08T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-07T21:09:58+00:00"
+  },
+  {
+    "file": "2026-11-08_pm_Train-Window_en_description.txt",
+    "video_file": "2026-11-08_pm_Train-Window.mp4",
+    "lang": "en",
+    "video_id": "s6n8pn-9Uco",
+    "url": "https://youtu.be/s6n8pn-9Uco",
+    "title": "train window views 🚆 travel lofi for the journey",
+    "privacy": "private",
+    "publish_at": "2026-11-08T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-07T21:10:07+00:00"
+  },
+  {
+    "file": "2026-11-08_pm_Train-Window_zh_description.txt",
+    "video_file": "2026-11-08_pm_Train-Window.mp4",
+    "lang": "zh",
+    "video_id": "3AqEZNys2PM",
+    "url": "https://youtu.be/3AqEZNys2PM",
+    "title": "火車窗外的風景 🚆 旅行 lofi｜通勤・旅途一小時歌單",
+    "privacy": "private",
+    "publish_at": "2026-11-08T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-07T21:10:16+00:00"
   }
 ]
