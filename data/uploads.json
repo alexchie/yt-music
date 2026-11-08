@@ -679,5 +679,53 @@
     "publish_at": "2026-11-08T20:00:00+08:00",
     "thumbnail": "set",
     "uploaded_at": "2026-11-07T21:10:16+00:00"
+  },
+  {
+    "file": "2026-11-09_am_Clean-Desk-Monday_en_description.txt",
+    "video_file": "2026-11-09_am_Clean-Desk-Monday.mp4",
+    "lang": "en",
+    "video_id": "PYtjqyCuXBk",
+    "url": "https://youtu.be/PYtjqyCuXBk",
+    "title": "clean desk, clear head 📓 minimal lofi beats to start the week focused",
+    "privacy": "private",
+    "publish_at": "2026-11-09T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-08T21:28:40+00:00"
+  },
+  {
+    "file": "2026-11-09_am_Clean-Desk-Monday_zh_description.txt",
+    "video_file": "2026-11-09_am_Clean-Desk-Monday.mp4",
+    "lang": "zh",
+    "video_id": "wPphw_iuUBk",
+    "url": "https://youtu.be/wPphw_iuUBk",
+    "title": "整理好書桌 💻 週一專注 lofi｜一小時純音樂",
+    "privacy": "private",
+    "publish_at": "2026-11-09T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-08T21:28:54+00:00"
+  },
+  {
+    "file": "2026-11-09_pm_Greenhouse-Morning_en_description.txt",
+    "video_file": "2026-11-09_pm_Greenhouse-Morning.mp4",
+    "lang": "en",
+    "video_id": "q2mvR5aXwMo",
+    "url": "https://youtu.be/q2mvR5aXwMo",
+    "title": "greenhouse morning 🌿 calming plant lofi",
+    "privacy": "private",
+    "publish_at": "2026-11-09T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-08T21:29:12+00:00"
+  },
+  {
+    "file": "2026-11-09_pm_Greenhouse-Morning_zh_description.txt",
+    "video_file": "2026-11-09_pm_Greenhouse-Morning.mp4",
+    "lang": "zh",
+    "video_id": "TIQxciBRUbc",
+    "url": "https://youtu.be/TIQxciBRUbc",
+    "title": "植物溫室 lofi 🌿 療癒綠意歌單｜一小時放鬆純音樂",
+    "privacy": "private",
+    "publish_at": "2026-11-09T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-08T21:29:32+00:00"
   }
 ]
