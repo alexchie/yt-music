@@ -775,5 +775,53 @@
     "publish_at": "2026-11-10T20:00:00+08:00",
     "thumbnail": "set",
     "uploaded_at": "2026-11-10T00:58:06+00:00"
+  },
+  {
+    "file": "2026-11-11_am_Rainy-City-Wednesday_en_description.txt",
+    "video_file": "2026-11-11_am_Rainy-City-Wednesday.mp4",
+    "lang": "en",
+    "video_id": "xOCezGC1nF4",
+    "url": "https://youtu.be/xOCezGC1nF4",
+    "title": "wet streets far below, a warm apartment up here 🌧 lofi beats for a rainy city wednesday",
+    "privacy": "private",
+    "publish_at": "2026-11-11T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-10T22:37:25+00:00"
+  },
+  {
+    "file": "2026-11-11_am_Rainy-City-Wednesday_zh_description.txt",
+    "video_file": "2026-11-11_am_Rainy-City-Wednesday.mp4",
+    "lang": "zh",
+    "video_id": "_vHNnu4jTmk",
+    "url": "https://youtu.be/_vHNnu4jTmk",
+    "title": "俯瞰雨中城市 🌧️ 週三 lofi｜一小時 chill",
+    "privacy": "private",
+    "publish_at": "2026-11-11T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-10T22:37:33+00:00"
+  },
+  {
+    "file": "2026-11-11_pm_Sunlit-Living-Room_en_description.txt",
+    "video_file": "2026-11-11_pm_Sunlit-Living-Room.mp4",
+    "lang": "en",
+    "video_id": "B45wN_GTSmk",
+    "url": "https://youtu.be/B45wN_GTSmk",
+    "title": "sunlit living room ☀️ lazy afternoon lofi at home",
+    "privacy": "private",
+    "publish_at": "2026-11-11T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-10T22:37:41+00:00"
+  },
+  {
+    "file": "2026-11-11_pm_Sunlit-Living-Room_zh_description.txt",
+    "video_file": "2026-11-11_pm_Sunlit-Living-Room.mp4",
+    "lang": "zh",
+    "video_id": "Wfk2PiziF-A",
+    "url": "https://youtu.be/Wfk2PiziF-A",
+    "title": "落地窗前的午後 ☀️ 客廳 lofi｜居家放鬆一小時歌單",
+    "privacy": "private",
+    "publish_at": "2026-11-11T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-10T22:37:51+00:00"
   }
 ]
