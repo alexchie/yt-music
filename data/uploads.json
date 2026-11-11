@@ -823,5 +823,53 @@
     "publish_at": "2026-11-11T20:00:00+08:00",
     "thumbnail": "set",
     "uploaded_at": "2026-11-10T22:37:51+00:00"
+  },
+  {
+    "file": "2026-11-12_am_Marble-and-Maple_en_description.txt",
+    "video_file": "2026-11-12_am_Marble-and-Maple.mp4",
+    "lang": "en",
+    "video_id": "WN0SUKAmCKw",
+    "url": "https://youtu.be/WN0SUKAmCKw",
+    "title": "crisp november sun on marble, maple leaves blowing past 🍁 lofi beats for a clear afternoon",
+    "privacy": "public",
+    "publish_at": null,
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-11T23:46:48+00:00"
+  },
+  {
+    "file": "2026-11-12_am_Marble-and-Maple_zh_description.txt",
+    "video_file": "2026-11-12_am_Marble-and-Maple.mp4",
+    "lang": "zh",
+    "video_id": "RhTKGxmUXSk",
+    "url": "https://youtu.be/RhTKGxmUXSk",
+    "title": "大理石與楓葉 🍁 清爽明亮的午後 lofi｜一小時",
+    "privacy": "public",
+    "publish_at": null,
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-11T23:46:55+00:00"
+  },
+  {
+    "file": "2026-11-12_pm_Forest-in-the-Fog_en_description.txt",
+    "video_file": "2026-11-12_pm_Forest-in-the-Fog.mp4",
+    "lang": "en",
+    "video_id": "M9EI9qnHaug",
+    "url": "https://youtu.be/M9EI9qnHaug",
+    "title": "foggy forest morning 🌲 calming lofi for a walk",
+    "privacy": "private",
+    "publish_at": "2026-11-12T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-11T23:47:03+00:00"
+  },
+  {
+    "file": "2026-11-12_pm_Forest-in-the-Fog_zh_description.txt",
+    "video_file": "2026-11-12_pm_Forest-in-the-Fog.mp4",
+    "lang": "zh",
+    "video_id": "P4YWCe3fQrE",
+    "url": "https://youtu.be/P4YWCe3fQrE",
+    "title": "霧中森林 lofi 🌲 清晨散步歌單｜一小時療癒純音樂",
+    "privacy": "private",
+    "publish_at": "2026-11-12T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-11T23:47:10+00:00"
   }
 ]
