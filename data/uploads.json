@@ -871,5 +871,53 @@
     "publish_at": "2026-11-12T20:00:00+08:00",
     "thumbnail": "set",
     "uploaded_at": "2026-11-11T23:47:10+00:00"
+  },
+  {
+    "file": "2026-11-13_am_Friday-Records-Night_en_description.txt",
+    "video_file": "2026-11-13_am_Friday-Records-Night.mp4",
+    "lang": "en",
+    "video_id": "CjawRDFa568",
+    "url": "https://youtu.be/CjawRDFa568",
+    "title": "friday night, digging through the record shelf 🎶 vintage lofi beats to start the weekend",
+    "privacy": "private",
+    "publish_at": "2026-11-13T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-12T22:59:30+00:00"
+  },
+  {
+    "file": "2026-11-13_am_Friday-Records-Night_zh_description.txt",
+    "video_file": "2026-11-13_am_Friday-Records-Night.mp4",
+    "lang": "zh",
+    "video_id": "mjLq9nhvB4U",
+    "url": "https://youtu.be/mjLq9nhvB4U",
+    "title": "週五夜翻唱片 📀 復古 lofi 迎接週末｜一小時",
+    "privacy": "private",
+    "publish_at": "2026-11-13T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-12T22:59:39+00:00"
+  },
+  {
+    "file": "2026-11-13_pm_Lanterns-on-the-Way-Home_en_description.txt",
+    "video_file": "2026-11-13_pm_Lanterns-on-the-Way-Home.mp4",
+    "lang": "en",
+    "video_id": "6hY6Ulnq8N8",
+    "url": "https://youtu.be/6hY6Ulnq8N8",
+    "title": "walking home under lanterns 🏮 chill night lofi",
+    "privacy": "private",
+    "publish_at": "2026-11-13T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-12T22:59:46+00:00"
+  },
+  {
+    "file": "2026-11-13_pm_Lanterns-on-the-Way-Home_zh_description.txt",
+    "video_file": "2026-11-13_pm_Lanterns-on-the-Way-Home.mp4",
+    "lang": "zh",
+    "video_id": "1sfJxdWafr4",
+    "url": "https://youtu.be/1sfJxdWafr4",
+    "title": "夜市回家路上 🏮 夜晚 lofi｜放鬆 chill 一小時",
+    "privacy": "private",
+    "publish_at": "2026-11-13T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-12T22:59:52+00:00"
   }
 ]
