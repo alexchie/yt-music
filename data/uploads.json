@@ -967,5 +967,53 @@
     "publish_at": "2026-11-14T20:00:00+08:00",
     "thumbnail": "set",
     "uploaded_at": "2026-11-13T22:56:40+00:00"
+  },
+  {
+    "file": "2026-11-15_am_Slow-Baking-Sunday_en_description.txt",
+    "video_file": "2026-11-15_am_Slow-Baking-Sunday.mp4",
+    "lang": "en",
+    "video_id": "_R1woAzu8ks",
+    "url": "https://youtu.be/_R1woAzu8ks",
+    "title": "something in the oven on a slow sunday 🥧 warm lofi beats for a cozy afternoon",
+    "privacy": "private",
+    "publish_at": "2026-11-15T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-14T21:48:24+00:00"
+  },
+  {
+    "file": "2026-11-15_am_Slow-Baking-Sunday_zh_description.txt",
+    "video_file": "2026-11-15_am_Slow-Baking-Sunday.mp4",
+    "lang": "zh",
+    "video_id": "A0p2ou0Wt28",
+    "url": "https://youtu.be/A0p2ou0Wt28",
+    "title": "烤箱裡的點心 🥧 週日廚房 lofi｜一小時溫暖",
+    "privacy": "private",
+    "publish_at": "2026-11-15T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-14T21:48:34+00:00"
+  },
+  {
+    "file": "2026-11-15_pm_Early-Winter-Morning_en_description.txt",
+    "video_file": "2026-11-15_pm_Early-Winter-Morning.mp4",
+    "lang": "en",
+    "video_id": "DTsan9P3qVQ",
+    "url": "https://youtu.be/DTsan9P3qVQ",
+    "title": "early winter morning 🧣 soft lofi for the commute",
+    "privacy": "private",
+    "publish_at": "2026-11-15T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-14T21:48:47+00:00"
+  },
+  {
+    "file": "2026-11-15_pm_Early-Winter-Morning_zh_description.txt",
+    "video_file": "2026-11-15_pm_Early-Winter-Morning.mp4",
+    "lang": "zh",
+    "video_id": "gOYx2yJSstQ",
+    "url": "https://youtu.be/gOYx2yJSstQ",
+    "title": "初冬早晨 lofi 🧣 通勤上學歌單｜一小時輕柔純音樂",
+    "privacy": "private",
+    "publish_at": "2026-11-15T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-14T21:49:00+00:00"
   }
 ]
