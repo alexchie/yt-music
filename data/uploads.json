@@ -1063,5 +1063,53 @@
     "publish_at": "2026-11-16T20:00:00+08:00",
     "thumbnail": "set",
     "uploaded_at": "2026-11-15T22:07:26+00:00"
+  },
+  {
+    "file": "2026-11-17_am_Sage-and-Steam_en_description.txt",
+    "video_file": "2026-11-17_am_Sage-and-Steam.mp4",
+    "lang": "en",
+    "video_id": "Rx8L1wYw5nc",
+    "url": "https://youtu.be/Rx8L1wYw5nc",
+    "title": "steam from the teapot on a misty november afternoon 🌿 calm lofi beats",
+    "privacy": "public",
+    "publish_at": null,
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-17T01:08:45+00:00"
+  },
+  {
+    "file": "2026-11-17_am_Sage-and-Steam_zh_description.txt",
+    "video_file": "2026-11-17_am_Sage-and-Steam.mp4",
+    "lang": "zh",
+    "video_id": "QkR_fBhP1zM",
+    "url": "https://youtu.be/QkR_fBhP1zM",
+    "title": "茶壺冒煙的霧天午後 🍵 平靜 lofi｜一小時",
+    "privacy": "public",
+    "publish_at": null,
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-17T01:09:01+00:00"
+  },
+  {
+    "file": "2026-11-17_pm_Rooftop-Stars_en_description.txt",
+    "video_file": "2026-11-17_pm_Rooftop-Stars.mp4",
+    "lang": "en",
+    "video_id": "3JCX_H-1nXI",
+    "url": "https://youtu.be/3JCX_H-1nXI",
+    "title": "rooftop stargazing ✨ calm night lofi",
+    "privacy": "private",
+    "publish_at": "2026-11-17T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-17T01:09:21+00:00"
+  },
+  {
+    "file": "2026-11-17_pm_Rooftop-Stars_zh_description.txt",
+    "video_file": "2026-11-17_pm_Rooftop-Stars.mp4",
+    "lang": "zh",
+    "video_id": "3GvIIlq-850",
+    "url": "https://youtu.be/3GvIIlq-850",
+    "title": "屋頂星空 lofi ✨ 夜晚放鬆歌單｜一小時助眠純音樂",
+    "privacy": "private",
+    "publish_at": "2026-11-17T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-17T01:09:41+00:00"
   }
 ]
