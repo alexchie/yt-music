@@ -1207,5 +1207,53 @@
     "publish_at": "2026-11-19T20:00:00+08:00",
     "thumbnail": "set",
     "uploaded_at": "2026-11-19T00:17:24+00:00"
+  },
+  {
+    "file": "2026-11-20_am_Somewhere-Warm_en_description.txt",
+    "video_file": "2026-11-20_am_Somewhere-Warm.mp4",
+    "lang": "en",
+    "video_id": "mjhpJrGd_xY",
+    "url": "https://youtu.be/mjhpJrGd_xY",
+    "title": "cold outside, somewhere warm in here 🌴 tropical lofi beats for a friday afternoon",
+    "privacy": "public",
+    "publish_at": null,
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-19T23:55:16+00:00"
+  },
+  {
+    "file": "2026-11-20_am_Somewhere-Warm_zh_description.txt",
+    "video_file": "2026-11-20_am_Somewhere-Warm.mp4",
+    "lang": "zh",
+    "video_id": "ZWb5VR1UPZ4",
+    "url": "https://youtu.be/ZWb5VR1UPZ4",
+    "title": "外面很冷屋裡像熱帶 🌴 夏日感 lofi｜一小時",
+    "privacy": "public",
+    "publish_at": null,
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-19T23:55:28+00:00"
+  },
+  {
+    "file": "2026-11-20_pm_Rainy-Night-Train_en_description.txt",
+    "video_file": "2026-11-20_pm_Rainy-Night-Train.mp4",
+    "lang": "en",
+    "video_id": "PO1govuYY4M",
+    "url": "https://youtu.be/PO1govuYY4M",
+    "title": "rainy night train 🌧️ chill lofi for the ride home",
+    "privacy": "private",
+    "publish_at": "2026-11-20T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-19T23:55:39+00:00"
+  },
+  {
+    "file": "2026-11-20_pm_Rainy-Night-Train_zh_description.txt",
+    "video_file": "2026-11-20_pm_Rainy-Night-Train.mp4",
+    "lang": "zh",
+    "video_id": "per09x_Ofj4",
+    "url": "https://youtu.be/per09x_Ofj4",
+    "title": "雨夜電車 lofi 🌧️ 下班回家歌單｜一小時 chill 純音樂",
+    "privacy": "private",
+    "publish_at": "2026-11-20T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-19T23:55:51+00:00"
   }
 ]
