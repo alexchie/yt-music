@@ -1159,5 +1159,53 @@
     "publish_at": "2026-11-18T20:00:00+08:00",
     "thumbnail": "set",
     "uploaded_at": "2026-11-18T00:40:41+00:00"
+  },
+  {
+    "file": "2026-11-19_am_Morning-Pages_en_description.txt",
+    "video_file": "2026-11-19_am_Morning-Pages.mp4",
+    "lang": "en",
+    "video_id": "tGw0vEUM4fw",
+    "url": "https://youtu.be/tGw0vEUM4fw",
+    "title": "morning pages by the window, just a pen and the quiet ✍ minimal lofi beats",
+    "privacy": "public",
+    "publish_at": null,
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-19T00:15:26+00:00"
+  },
+  {
+    "file": "2026-11-19_am_Morning-Pages_zh_description.txt",
+    "video_file": "2026-11-19_am_Morning-Pages.mp4",
+    "lang": "zh",
+    "video_id": "lp7pybr3EMY",
+    "url": "https://youtu.be/lp7pybr3EMY",
+    "title": "晨間書寫時光 📝 極簡 lofi｜寫字日記一小時",
+    "privacy": "public",
+    "publish_at": null,
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-19T00:15:43+00:00"
+  },
+  {
+    "file": "2026-11-19_pm_Lakeside-Cabin-Nap_en_description.txt",
+    "video_file": "2026-11-19_pm_Lakeside-Cabin-Nap.mp4",
+    "lang": "en",
+    "video_id": "uJ0hKpV96Qo",
+    "url": "https://youtu.be/uJ0hKpV96Qo",
+    "title": "lakeside cabin nap 🛶 lazy afternoon lofi",
+    "privacy": "private",
+    "publish_at": "2026-11-19T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-19T00:16:35+00:00"
+  },
+  {
+    "file": "2026-11-19_pm_Lakeside-Cabin-Nap_zh_description.txt",
+    "video_file": "2026-11-19_pm_Lakeside-Cabin-Nap.mp4",
+    "lang": "zh",
+    "video_id": "XyDkbyW1_xs",
+    "url": "https://youtu.be/XyDkbyW1_xs",
+    "title": "湖邊木屋 lofi 🛶 慵懶午睡歌單｜一小時放鬆純音樂",
+    "privacy": "private",
+    "publish_at": "2026-11-19T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-19T00:17:24+00:00"
   }
 ]
