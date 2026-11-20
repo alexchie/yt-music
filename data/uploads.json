@@ -1255,5 +1255,53 @@
     "publish_at": "2026-11-20T20:00:00+08:00",
     "thumbnail": "set",
     "uploaded_at": "2026-11-19T23:55:51+00:00"
+  },
+  {
+    "file": "2026-11-21_am_Velvet-Night-In_en_description.txt",
+    "video_file": "2026-11-21_am_Velvet-Night-In.mp4",
+    "lang": "en",
+    "video_id": "VK9dptgIi4A",
+    "url": "https://youtu.be/VK9dptgIi4A",
+    "title": "saturday night in, low light and velvet beats 🍷 moody lofi for staying home",
+    "privacy": "private",
+    "publish_at": "2026-11-21T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-20T23:27:21+00:00"
+  },
+  {
+    "file": "2026-11-21_am_Velvet-Night-In_zh_description.txt",
+    "video_file": "2026-11-21_am_Velvet-Night-In.mp4",
+    "lang": "zh",
+    "video_id": "RnR-_Dslr8A",
+    "url": "https://youtu.be/RnR-_Dslr8A",
+    "title": "週六夜晚在家 🍷 絲絨般的 lofi｜一小時 chill",
+    "privacy": "private",
+    "publish_at": "2026-11-21T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-20T23:27:32+00:00"
+  },
+  {
+    "file": "2026-11-21_pm_Flower-Shop-Morning_en_description.txt",
+    "video_file": "2026-11-21_pm_Flower-Shop-Morning.mp4",
+    "lang": "en",
+    "video_id": "UdYI9RETmms",
+    "url": "https://youtu.be/UdYI9RETmms",
+    "title": "flower shop morning 💐 gentle uplifting lofi",
+    "privacy": "private",
+    "publish_at": "2026-11-21T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-20T23:27:42+00:00"
+  },
+  {
+    "file": "2026-11-21_pm_Flower-Shop-Morning_zh_description.txt",
+    "video_file": "2026-11-21_pm_Flower-Shop-Morning.mp4",
+    "lang": "zh",
+    "video_id": "M8Bgw51ETWM",
+    "url": "https://youtu.be/M8Bgw51ETWM",
+    "title": "花店早晨 lofi 💐 溫柔療癒歌單｜一小時輕快純音樂",
+    "privacy": "private",
+    "publish_at": "2026-11-21T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-20T23:27:50+00:00"
   }
 ]
