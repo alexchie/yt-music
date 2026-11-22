@@ -1351,5 +1351,53 @@
     "publish_at": "2026-11-22T20:00:00+08:00",
     "thumbnail": "set",
     "uploaded_at": "2026-11-21T22:31:54+00:00"
+  },
+  {
+    "file": "2026-11-23_am_Crisp-Air-Warm-Room_en_description.txt",
+    "video_file": "2026-11-23_am_Crisp-Air-Warm-Room.mp4",
+    "lang": "en",
+    "video_id": "SiHqUZEo5Ag",
+    "url": "https://youtu.be/SiHqUZEo5Ag",
+    "title": "crisp air outside, warm light inside 🍃 lofi beats for a clear november monday",
+    "privacy": "private",
+    "publish_at": "2026-11-23T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-22T22:45:05+00:00"
+  },
+  {
+    "file": "2026-11-23_am_Crisp-Air-Warm-Room_zh_description.txt",
+    "video_file": "2026-11-23_am_Crisp-Air-Warm-Room.mp4",
+    "lang": "zh",
+    "video_id": "_1wWbGdtWA4",
+    "url": "https://youtu.be/_1wWbGdtWA4",
+    "title": "外面清冷屋裡溫暖 ☀️ 週一 lofi｜專注一小時",
+    "privacy": "private",
+    "publish_at": "2026-11-23T08:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-22T22:45:12+00:00"
+  },
+  {
+    "file": "2026-11-23_pm_Harbor-at-Dawn_en_description.txt",
+    "video_file": "2026-11-23_pm_Harbor-at-Dawn.mp4",
+    "lang": "en",
+    "video_id": "vb2QPeLz4I4",
+    "url": "https://youtu.be/vb2QPeLz4I4",
+    "title": "harbor at dawn ⚓ soft morning lofi",
+    "privacy": "private",
+    "publish_at": "2026-11-23T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-22T22:45:20+00:00"
+  },
+  {
+    "file": "2026-11-23_pm_Harbor-at-Dawn_zh_description.txt",
+    "video_file": "2026-11-23_pm_Harbor-at-Dawn.mp4",
+    "lang": "zh",
+    "video_id": "WDbC6uLBEq0",
+    "url": "https://youtu.be/WDbC6uLBEq0",
+    "title": "港口清晨 lofi ⚓ 早晨散步歌單｜一小時輕柔純音樂",
+    "privacy": "private",
+    "publish_at": "2026-11-23T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-22T22:45:29+00:00"
   }
 ]
