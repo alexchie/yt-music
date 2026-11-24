@@ -1399,5 +1399,53 @@
     "publish_at": "2026-11-23T20:00:00+08:00",
     "thumbnail": "set",
     "uploaded_at": "2026-11-22T22:45:29+00:00"
+  },
+  {
+    "file": "2026-11-24_am_Brick-and-Drizzle_en_description.txt",
+    "video_file": "2026-11-24_am_Brick-and-Drizzle.mp4",
+    "lang": "en",
+    "video_id": "GI3dey4ozjY",
+    "url": "https://youtu.be/GI3dey4ozjY",
+    "title": "drizzle on the city windows, warm brick inside 🌧 vintage lofi for a cozy afternoon",
+    "privacy": "public",
+    "publish_at": null,
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-24T03:54:53+00:00"
+  },
+  {
+    "file": "2026-11-24_am_Brick-and-Drizzle_zh_description.txt",
+    "video_file": "2026-11-24_am_Brick-and-Drizzle.mp4",
+    "lang": "zh",
+    "video_id": "jyYPcFnC6mY",
+    "url": "https://youtu.be/jyYPcFnC6mY",
+    "title": "毛毛雨的紅磚閣樓 🌧️ 復古 lofi｜一小時",
+    "privacy": "public",
+    "publish_at": null,
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-24T03:55:02+00:00"
+  },
+  {
+    "file": "2026-11-24_pm_Painter-s-Studio_en_description.txt",
+    "video_file": "2026-11-24_pm_Painter-s-Studio.mp4",
+    "lang": "en",
+    "video_id": "4BTTwHyujWc",
+    "url": "https://youtu.be/4BTTwHyujWc",
+    "title": "painter's studio 🎨 creative lofi for drawing and design",
+    "privacy": "private",
+    "publish_at": "2026-11-24T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-24T03:55:14+00:00"
+  },
+  {
+    "file": "2026-11-24_pm_Painter-s-Studio_zh_description.txt",
+    "video_file": "2026-11-24_pm_Painter-s-Studio.mp4",
+    "lang": "zh",
+    "video_id": "tHJl1qIHv68",
+    "url": "https://youtu.be/tHJl1qIHv68",
+    "title": "畫室午後 lofi 🎨 創作專用歌單｜畫畫・設計一小時純音樂",
+    "privacy": "private",
+    "publish_at": "2026-11-24T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-24T03:55:24+00:00"
   }
 ]
