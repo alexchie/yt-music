@@ -1447,5 +1447,53 @@
     "publish_at": "2026-11-24T20:00:00+08:00",
     "thumbnail": "set",
     "uploaded_at": "2026-11-24T03:55:24+00:00"
+  },
+  {
+    "file": "2026-11-25_am_Snow-on-the-Far-Peaks_en_description.txt",
+    "video_file": "2026-11-25_am_Snow-on-the-Far-Peaks.mp4",
+    "lang": "en",
+    "video_id": "WZOstq9BGOs",
+    "url": "https://youtu.be/WZOstq9BGOs",
+    "title": "snow on the far peaks, the lake turning silver ❄ calm lofi for the edge of winter",
+    "privacy": "public",
+    "publish_at": null,
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-25T01:43:10+00:00"
+  },
+  {
+    "file": "2026-11-25_am_Snow-on-the-Far-Peaks_zh_description.txt",
+    "video_file": "2026-11-25_am_Snow-on-the-Far-Peaks.mp4",
+    "lang": "zh",
+    "video_id": "Euc1ZPYhn_s",
+    "url": "https://youtu.be/Euc1ZPYhn_s",
+    "title": "遠山積雪冬天將至 🏔️ 初冬 lofi｜一小時純音樂",
+    "privacy": "public",
+    "publish_at": null,
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-25T01:43:19+00:00"
+  },
+  {
+    "file": "2026-11-25_pm_Sea-of-Clouds_en_description.txt",
+    "video_file": "2026-11-25_pm_Sea-of-Clouds.mp4",
+    "lang": "en",
+    "video_id": "uGFnViP7OYs",
+    "url": "https://youtu.be/uGFnViP7OYs",
+    "title": "sea of clouds at sunrise ⛰️ calming lofi",
+    "privacy": "private",
+    "publish_at": "2026-11-25T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-25T01:43:30+00:00"
+  },
+  {
+    "file": "2026-11-25_pm_Sea-of-Clouds_zh_description.txt",
+    "video_file": "2026-11-25_pm_Sea-of-Clouds.mp4",
+    "lang": "zh",
+    "video_id": "HMg338dJnbE",
+    "url": "https://youtu.be/HMg338dJnbE",
+    "title": "山頂雲海 lofi ⛰️ 日出時分歌單｜一小時療癒純音樂",
+    "privacy": "private",
+    "publish_at": "2026-11-25T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-25T01:43:44+00:00"
   }
 ]
