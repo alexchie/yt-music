@@ -108,12 +108,23 @@ repo → Actions → Daily video → Run workflow，成功後 Daily YouTube uplo
 | `cover_seconds` | 開頭封面顯示秒數 |
 
 ## 背景圖
-每天先從 [Wikimedia Commons](https://commons.wikimedia.org/)、再從 [Openverse](https://openverse.org/) 搜尋一張和主題相關、**CC0 或公有領域**（不需標示也可商用）的寬幅照片，
-用主題的 `image_query`（選填，英文關鍵字）或封面標題搜尋，用過的照片不會再用。
+每天先從 [Wikimedia Commons](https://commons.wikimedia.org/)、再從 [Openverse](https://openverse.org/) 搜尋一張**CC0 或公有領域**（不需標示也可商用）的寬幅照片，用過的照片不會再用。
+
+底圖只能是這 8 種場景：**咖啡廳、景點、街景、風景、城市景點、唱片、音響、讀書**（定義在 `scripts/scenes.py`）。
+程式依主題的英文標題和標籤挑最接近的場景（例如 coffee → 咖啡廳、record → 唱片），對不上就依日期輪流；
+只用該場景的關鍵字搜尋（主題裡的雨、雪、夜晚等字會加在前面），而且照片檔名要提到該場景（例如 cafe、street、vinyl），
+檔名像信件、地圖、畫作、太空或軍事照片的一律跳過。
 照片出處會加在 YouTube 說明的曲目表後面，例如：
 `Background photo: "Rainy window" by Jane (CC0 1.0) via Wikimedia Commons: https://...`
 
-兩邊都找不到合適的照片或連不上時，改用 `assets/backgrounds/` 裡的圖（由主題庫的 `background` 決定）。
+兩邊都找不到合適的照片或連不上時，改用 `assets/backgrounds/` 裡的圖（由主題庫的 `background` 決定，都是唱片機和音響的客廳）。
+
+## 封面
+- **英文封面**：Cormorant Garamond 襯線字，大標＋小字，維持原樣。
+- **中文封面**：[霞鶩文楷 LXGW WenKai TC](https://github.com/lxgw/LxgwWenkaiTC)（OFL 開源授權，可免費商用）粗體大標，
+  下面一個醒目的關鍵詞標籤（例如「聖誕 lofi」「雨天 lofi」「咖啡廳 lofi」）加上「讀書・工作・放鬆」。
+  關鍵詞依主題自動挑選，規則在 `scripts/scenes.py` 的 `cover_keywords_zh`。想換字型，把字型檔放進 `assets/fonts/`，
+  改 `scripts/make_video.py` 的 `ZH_COVER_FONT` 即可。
 建議 16:9、至少 1600×900；比例不同會自動從中間裁切。
 
 ## 每天的產出
