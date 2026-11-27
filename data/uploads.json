@@ -1543,5 +1543,53 @@
     "publish_at": "2026-11-26T20:00:00+08:00",
     "thumbnail": "set",
     "uploaded_at": "2026-11-26T01:15:50+00:00"
+  },
+  {
+    "file": "2026-11-27_am_The-Slow-Friday-After_en_description.txt",
+    "video_file": "2026-11-27_am_The-Slow-Friday-After.mp4",
+    "lang": "en",
+    "video_id": "xLvLBeYTG8o",
+    "url": "https://youtu.be/xLvLBeYTG8o",
+    "title": "the slow friday after, leftovers and a quiet house 🤍 calm lofi beats for a long weekend",
+    "privacy": "public",
+    "publish_at": null,
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-27T01:16:58+00:00"
+  },
+  {
+    "file": "2026-11-27_am_The-Slow-Friday-After_zh_description.txt",
+    "video_file": "2026-11-27_am_The-Slow-Friday-After.mp4",
+    "lang": "zh",
+    "video_id": "JU9WFCzKICY",
+    "url": "https://youtu.be/JU9WFCzKICY",
+    "title": "安靜的長週末 ☕ 平靜 lofi｜休息日一小時",
+    "privacy": "public",
+    "publish_at": null,
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-27T01:17:03+00:00"
+  },
+  {
+    "file": "2026-11-27_pm_Christmas-Eve-Eve_en_description.txt",
+    "video_file": "2026-11-27_pm_Christmas-Eve-Eve.mp4",
+    "lang": "en",
+    "video_id": "o1gSwSgOqhw",
+    "url": "https://youtu.be/o1gSwSgOqhw",
+    "title": "night before christmas eve 🎄 warm holiday lofi",
+    "privacy": "private",
+    "publish_at": "2026-11-27T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-27T01:17:09+00:00"
+  },
+  {
+    "file": "2026-11-27_pm_Christmas-Eve-Eve_zh_description.txt",
+    "video_file": "2026-11-27_pm_Christmas-Eve-Eve.mp4",
+    "lang": "zh",
+    "video_id": "lkIqLcqugoQ",
+    "url": "https://youtu.be/lkIqLcqugoQ",
+    "title": "聖誕前夕 lofi 🎄 冬日節慶歌單｜一小時溫暖純音樂",
+    "privacy": "private",
+    "publish_at": "2026-11-27T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-27T01:17:17+00:00"
   }
 ]
