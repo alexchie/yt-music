@@ -7,6 +7,9 @@ description and tags, the matching cover as thumbnail, and a scheduled publish t
 (PUBLISH_AT) when that is still in the future. Uploads are recorded in
 data/uploads.json so the same version is never uploaded twice.
 
+Each upload is also added to themed playlists (see scripts/playlists.py), and every run
+adds a few older uploads that are not in a playlist yet, so the playlists fill up over time.
+
 Needs env vars: YT_CLIENT_ID, YT_CLIENT_SECRET, YT_REFRESH_TOKEN (see
 scripts/get_youtube_token.py), and optionally YT_PRIVACY (public / unlisted / private).
 
@@ -25,13 +28,19 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaFileUpload
 
+import playlists as playlists_mod
+
 ROOT = Path(__file__).resolve().parent.parent
 UPLOADS = ROOT / "data" / "uploads.json"
+HISTORY = ROOT / "data" / "history.json"
 TOKEN_URI = "https://oauth2.googleapis.com/token"
-SCOPES = ["https://www.googleapis.com/auth/youtube.upload"]
 CATEGORY_MUSIC = "10"
 LANGUAGE_CODES = {"zh": "zh-Hant", "en": "en"}
 MAX_PER_RUN = 4  # 4 uploads + thumbnails stay well inside the 10,000 unit daily quota
+# Older uploads added to playlists per run, 2 x 50 quota units each, on top of the new uploads
+# (4 x (1,600 upload + 50 thumbnail + 2 x 50 playlist) = 7,000 units). The workflow can run
+# twice in one quota day, and creating the 16 playlists the first time costs 800 more.
+BACKFILL_PER_RUN = 6
 # A publish time closer than this is treated as "now": YouTube needs some lead time.
 MIN_LEAD = datetime.timedelta(minutes=15)
 
@@ -74,7 +83,8 @@ def youtube_client():
         token_uri=TOKEN_URI,
         client_id=os.environ["YT_CLIENT_ID"],
         client_secret=os.environ["YT_CLIENT_SECRET"],
-        scopes=SCOPES,
+        # No scopes here: the refresh then keeps whatever the token was granted, so an older
+        # upload-only token still works (just without playlists).
     )
     return build("youtube", "v3", credentials=creds, cache_discovery=False)
 
@@ -111,17 +121,72 @@ def upload(youtube, video, meta, privacy, publish_at):
     return response
 
 
+def save(uploads):
+    UPLOADS.parent.mkdir(exist_ok=True)
+    UPLOADS.write_text(json.dumps(uploads, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def playlist_keys(video_name, meta, history, config):
+    """Playlists for a video, from its theme in history.json, or from the title and tags."""
+    theme = next((h for h in history if video_name in h.get("files", [])), None)
+    text = playlists_mod.theme_text(theme) if theme else " ".join([meta["title"], *meta.get("tags", [])])
+    return playlists_mod.classify(text, config)
+
+
+def add_to_playlists(lists, entry, meta, history):
+    """Put one upload into its playlists and record the result on the entry."""
+    if lists.disabled:
+        return
+    keys = playlist_keys(entry.get("video_file") or entry["file"], meta, history, lists.config)
+    try:
+        entry["playlists"] = lists.add(entry["video_id"], keys, entry.get("lang") or "en")
+        print(f"  Playlists: {', '.join(entry['playlists'])}")
+    except playlists_mod.NeedsReauth:
+        # Uploads keep working; these videos are added by a later run once the token is renewed.
+        lists.disabled = True
+        print("::warning::Playlists skipped: the YouTube token only allows uploads. "
+              "Run scripts/get_youtube_token.py again and update the YT_REFRESH_TOKEN secret.")
+    except HttpError as e:
+        if "quota" in str(e).lower():
+            lists.disabled = True  # try again tomorrow
+            print("  Playlists skipped: daily API quota used up")
+            return
+        if e.resp.status == 404:  # the video was deleted from the channel
+            entry["playlists"] = []
+        else:
+            entry["playlists"] = f"failed: {e.reason}"
+        print(f"  Playlists not updated: {e.reason}")
+
+
+def backfill_playlists(lists, uploads, history):
+    """Add older uploads that are in no playlist yet, a few per run."""
+    if lists.disabled:
+        return
+    todo = [u for u in uploads if not isinstance(u.get("playlists"), list)][:BACKFILL_PER_RUN]
+    if todo:
+        print(f"Adding {len(todo)} older uploads to playlists")
+    for entry in todo:
+        add_to_playlists(lists, entry, {"title": entry["title"], "tags": []}, history)
+        save(uploads)
+
+
 def main():
     folder = Path(sys.argv[1])
     uploads = json.loads(UPLOADS.read_text(encoding="utf-8")) if UPLOADS.exists() else []
+    history = json.loads(HISTORY.read_text(encoding="utf-8")) if HISTORY.exists() else []
     done = {u["file"] for u in uploads}
     jobs = pending(folder, done)[:MAX_PER_RUN]
     if not jobs:
         print("Nothing new to upload.")
-        return
 
     privacy = os.environ.get("YT_PRIVACY") or "public"
     youtube = youtube_client()
+    lists = playlists_mod.Playlists(youtube)
+    upload_all(youtube, lists, jobs, uploads, history, privacy)
+    backfill_playlists(lists, uploads, history)
+
+
+def upload_all(youtube, lists, jobs, uploads, history, privacy):
     now = datetime.datetime.now(datetime.timezone.utc)
     for video, desc, cover in jobs:
         meta = parse_description_file(desc)
@@ -143,7 +208,7 @@ def main():
                 thumbnail = f"failed: {e.reason}"
                 print(f"Thumbnail not set: {e.reason}")
 
-        uploads.append({
+        entry = {
             "file": desc.name,
             "video_file": video.name,
             "lang": meta["lang"],
@@ -154,10 +219,12 @@ def main():
             "publish_at": publish_at.isoformat() if publish_at else None,
             "thumbnail": thumbnail,
             "uploaded_at": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
-        })
+        }
+        uploads.append(entry)
         # Save after every upload so a later failure never causes a duplicate.
-        UPLOADS.parent.mkdir(exist_ok=True)
-        UPLOADS.write_text(json.dumps(uploads, ensure_ascii=False, indent=2), encoding="utf-8")
+        save(uploads)
+        add_to_playlists(lists, entry, meta, history)
+        save(uploads)
 
 
 if __name__ == "__main__":

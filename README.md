@@ -70,11 +70,24 @@ repo → Settings → Secrets and variables → Actions → New repository secre
   [YouTube API 稽核申請](https://support.google.com/youtube/contact/yt_api_form)；通過前請到 YouTube Studio 手動改公開或排程。
 - 自訂縮圖需要頻道完成手機驗證（https://www.youtube.com/verify）；沒驗證的話影片照常上傳，只是不會設縮圖。
 - 每天的上傳紀錄（影片網址）記在 `data/uploads.json`，同一支影片不會重複上傳。
+- 加入播放清單需要比上傳更大的權限（`youtube`）。2026-11 以前拿的 refresh token 只有上傳權限：
+  影片照常上傳，只是不會進播放清單（Actions 會顯示警告）。重跑一次第 5 步的 `get_youtube_token.py`，
+  把新的 `YT_REFRESH_TOKEN` 更新到 GitHub Secrets 即可，`YT_CLIENT_ID` / `YT_CLIENT_SECRET` 不用改。
 - API 每日免費配額可上傳約 6 支，一天 4 支（含縮圖約 6,600 單位）在範圍內。
 - 影片會在 08:00 / 20:00（台灣時間）自動公開；如果上傳時已經過了發布時間，就直接公開。
 
 ### 6. 測試
 repo → Actions → Daily video → Run workflow，成功後 Daily YouTube upload 會自動接著跑，再跑一次 Daily email。
+
+## 播放清單
+每支影片上傳後會自動加進兩個播放清單（中文版進中文清單、英文版進英文清單）：
+- **情境**（一定有一個）：雨天、深夜、讀書專注、早晨咖啡、居家放鬆（都對不上時用居家放鬆）
+- **季節**（主題有提到才加）：聖誕、冬天、秋天
+
+依主題英文的標題、封面字和標籤比對 `data/playlists.json` 裡的關鍵字來分類。播放清單第一次用到時自動建立（公開），
+ID 記在 `data/playlist_ids.json`；頻道上已經有同名清單的話會直接沿用。想改清單名稱、說明或關鍵字，編輯
+`data/playlists.json` 即可（已建立的清單改名要到 YouTube Studio 改，或刪掉 `playlist_ids.json` 裡那一行讓它重建）。
+以前上傳的影片每次執行會補加 6 支，大約兩週內全部補完。
 
 ## 主題庫
 - **早上的影片**用 `data/themes.json`：每天一個主題，依日期排好，目前排到 **2027-01-18**。
@@ -90,7 +103,7 @@ repo → Actions → Daily video → Run workflow，成功後 Daily YouTube uplo
 | `date` | 使用日期（台灣時間） |
 | `background` | 當天的背景圖檔名（`assets/backgrounds/` 裡） |
 | `cover_title` / `cover_subtitle` | 封面上的大標與小字 |
-| `youtube_title` | YouTube 標題 |
+| `youtube_title` | YouTube 標題。英文標題請把搜尋關鍵字放最前面（例如 `christmas lofi ✨ ...`、`rainy city lofi 🌧 ...`），情境描述放後面 |
 | `description` | 說明文前兩段；程式會再接上一句訂閱邀請、曲目時間軸和 hashtag |
 | `hashtags` / `tags` | 程式會在 `tags` 後面自動補上 lofi 通用標籤 |
 | `theme_note_zh` | 給你看的中文主題說明，寫在通知信裡 |
