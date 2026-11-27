@@ -166,3 +166,39 @@ def cover_keywords_zh(theme, scene):
     hook = hook or (SCENE_HOOK_ZH[scene] if own_scene else "放鬆")
     uses = [u for u in USES_ZH if u != hook][:3]
     return f"{hook} lofi", uses
+
+
+# A/B test on the Chinese cover: "keywords" (hook pill + uses) vs "sentence" (one full,
+# spoken-style line). Videos alternate between the two; history.json records which one.
+SENTENCES_ZH = {
+    "聖誕": ["聖誕夜，就讓這些歌陪你", "一放就有聖誕節的感覺"],
+    "跨年": ["一年的最後，留一小時給自己"],
+    "新年": ["新的一年，從一小時的安靜開始"],
+    "雨天": ["下雨天最適合聽的一小時", "聽著雨聲，心就靜下來了"],
+    "下雪天": ["外面下雪，屋裡只剩這些歌"],
+    "深夜": ["睡不著的時候，聽這個就對了", "深夜一個人，剛好需要這些歌"],
+    "咖啡廳": ["像坐在咖啡廳裡一樣放鬆", "一杯咖啡的時間，什麼都不用想"],
+    "黑膠": ["老唱片的聲音，真的很療癒"],
+    "讀書": ["讀書時放這個，真的比較專心", "一小時，專心把事情做完"],
+    "早晨": ["早上放這個，一整天心情都好"],
+}
+SENTENCES_ZH_ANY = [
+    "聽了真的會放鬆的音樂",
+    "一按下播放，心就靜下來了",
+    "工作讀書都適合，一小時不打擾",
+    "累了嗎？聽一小時再說",
+    "今天辛苦了，聽點溫柔的音樂吧",
+]
+ZH_COVER_VARIANTS = ("keywords", "sentence")
+
+
+def zh_cover_variant(today, slot):
+    """Alternate the variants so each publish slot (am / pm) gets both over two days."""
+    return ZH_COVER_VARIANTS[(today.toordinal() + slot) % 2]
+
+
+def cover_sentence_zh(theme, scene, seed):
+    """One full sentence for the "sentence" cover, matching the theme when one fits."""
+    hook = cover_keywords_zh(theme, scene)[0].removesuffix(" lofi")
+    options = SENTENCES_ZH.get(hook, []) + SENTENCES_ZH_ANY
+    return random.Random(seed).choice(options)

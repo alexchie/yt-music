@@ -51,6 +51,9 @@ def main():
                 f"主題概念：{e['theme_note_zh']}\n"
                 f"長度：{e['duration_seconds'] / 60:.0f} 分鐘，共 {len(e['tracks'])} 首：{'、'.join(e['tracks'])}\n"
             )
+            if e.get("zh_cover_variant"):
+                variant = f"句子版「{e['zh_cover_sentence']}」" if e["zh_cover_variant"] == "sentence" else "關鍵詞版"
+                parts.append(f"中文封面（A/B 測試）：{variant}\n")
             for lang, v in e.get("versions", {}).items():
                 desc_file = next((f for f in e["files"] if f.endswith(f"_{lang}_description.txt")), "")
                 up = links.get(desc_file)
