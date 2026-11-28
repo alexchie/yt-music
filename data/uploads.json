@@ -1591,5 +1591,53 @@
     "publish_at": "2026-11-27T20:00:00+08:00",
     "thumbnail": "set",
     "uploaded_at": "2026-11-27T01:17:17+00:00"
+  },
+  {
+    "file": "2026-11-28_am_First-Lights-Up_en_description.txt",
+    "video_file": "2026-11-28_am_First-Lights-Up.mp4",
+    "lang": "en",
+    "video_id": "5JxzciSpNXA",
+    "url": "https://youtu.be/5JxzciSpNXA",
+    "title": "putting the first fairy lights up on a cozy saturday ✨ soft lofi beats for decorating",
+    "privacy": "public",
+    "publish_at": null,
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-28T00:53:35+00:00"
+  },
+  {
+    "file": "2026-11-28_am_First-Lights-Up_zh_description.txt",
+    "video_file": "2026-11-28_am_First-Lights-Up.mp4",
+    "lang": "zh",
+    "video_id": "nMu2f5ctsaY",
+    "url": "https://youtu.be/nMu2f5ctsaY",
+    "title": "掛上第一串小燈 ✨ 佈置過節 lofi｜一小時",
+    "privacy": "public",
+    "publish_at": null,
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-28T00:53:42+00:00"
+  },
+  {
+    "file": "2026-11-28_pm_2am-Convenience-Store_en_description.txt",
+    "video_file": "2026-11-28_pm_2am-Convenience-Store.mp4",
+    "lang": "en",
+    "video_id": "hXYZEzCGUBA",
+    "url": "https://youtu.be/hXYZEzCGUBA",
+    "title": "2am convenience store 🏪 late night chill lofi",
+    "privacy": "private",
+    "publish_at": "2026-11-28T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-28T00:53:50+00:00"
+  },
+  {
+    "file": "2026-11-28_pm_2am-Convenience-Store_zh_description.txt",
+    "video_file": "2026-11-28_pm_2am-Convenience-Store.mp4",
+    "lang": "zh",
+    "video_id": "PW7xy52VXbM",
+    "url": "https://youtu.be/PW7xy52VXbM",
+    "title": "凌晨便利商店 lofi 🏪 深夜放鬆歌單｜一小時 chill 純音樂",
+    "privacy": "private",
+    "publish_at": "2026-11-28T20:00:00+08:00",
+    "thumbnail": "set",
+    "uploaded_at": "2026-11-28T00:53:57+00:00"
   }
 ]
