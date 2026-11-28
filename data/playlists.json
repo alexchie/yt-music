@@ -1,0 +1,54 @@
+{
+  "_note": "Each upload goes into one mood playlist (the best keyword match, or the fallback) and, if any keyword matches, one season playlist. Keywords are matched against the theme's English fields as whole words or word starts. Playlists are created on the channel the first time they are needed; their IDs are saved in data/playlist_ids.json.",
+  "fallback_mood": "cozy",
+  "playlists": [
+    {
+      "key": "rain", "group": "mood",
+      "keywords": ["rain", "rainy", "storm", "drizzle", "umbrella", "wet streets"],
+      "en": {"title": "Rainy Day Lofi 🌧 cozy beats for rainy days", "description": "Lofi for rainy afternoons and wet city nights. A new hour is added every few days."},
+      "zh": {"title": "雨天 lofi 🌧｜下雨天聽的放鬆音樂", "description": "下雨的午後、濕漉漉的城市夜晚，適合聽的 lofi。每隔幾天就會加入新的一小時歌單。"}
+    },
+    {
+      "key": "night", "group": "mood",
+      "keywords": ["night", "midnight", "late", "moon", "dark", "evening", "candle", "candlelit", "sleep", "bed", "2am", "lamplight", "lantern", "solstice", "owl"],
+      "en": {"title": "Late Night Lofi 🌙 chill beats for night owls", "description": "Dark, quiet lofi for late nights, winding down and falling asleep."},
+      "zh": {"title": "深夜 lofi 🌙｜夜晚放鬆・睡前音樂", "description": "安靜的深夜 lofi，適合夜讀、放鬆和睡前聽。"}
+    },
+    {
+      "key": "study", "group": "mood",
+      "keywords": ["study", "studying", "focus", "focused", "work", "working", "exam", "desk", "reading", "coding", "productive", "creative", "creating", "journaling", "writing", "deep work", "lock in", "clear head", "clear mind"],
+      "en": {"title": "Lofi for Study & Focus 📚 no vocals", "description": "Instrumental lofi with no vocals for studying, deep work and creative sessions."},
+      "zh": {"title": "讀書專注 lofi 📚｜無人聲讀書工作音樂", "description": "沒有人聲的 lofi 純音樂，適合讀書、工作和需要專注的時候。"}
+    },
+    {
+      "key": "morning", "group": "mood",
+      "keywords": ["morning", "mornings", "coffee", "breakfast", "sunrise", "dawn", "commute", "café", "cafe", "start the day", "first light", "tea"],
+      "en": {"title": "Morning Coffee Lofi ☕ bright beats to start the day", "description": "Bright, easy lofi for slow mornings, coffee and getting the day started."},
+      "zh": {"title": "早晨咖啡 lofi ☕｜開啟一天的輕快音樂", "description": "輕快的早晨 lofi，配一杯咖啡，慢慢開始新的一天。"}
+    },
+    {
+      "key": "cozy", "group": "mood",
+      "keywords": ["cozy", "sofa", "home", "living room", "kitchen", "staying in", "lazy", "weekend", "saturday", "sunday", "slow", "baking", "cooking", "cabin", "fireplace"],
+      "en": {"title": "Cozy Home Lofi 🛋 relaxing beats for staying in", "description": "Warm lofi for lazy days at home: the sofa, the kitchen, a slow weekend."},
+      "zh": {"title": "居家放鬆 lofi 🛋｜在家放空的慢時光", "description": "在家放空的溫暖 lofi：沙發、廚房、慢慢的週末。"}
+    },
+    {
+      "key": "christmas", "group": "season",
+      "keywords": ["christmas", "holiday", "holidays", "gingerbread", "ornament", "ornaments", "wrapping", "fairy lights", "cocoa", "peppermint", "christmas eve"],
+      "en": {"title": "Christmas Lofi 🎄 cozy holiday beats", "description": "Cozy lofi for the holiday season: lights, baking, wrapping presents and quiet nights."},
+      "zh": {"title": "聖誕 lofi 🎄｜溫暖的節日歌單", "description": "聖誕季節的溫暖 lofi：燈飾、烤餅乾、包禮物和安靜的夜晚。"}
+    },
+    {
+      "key": "winter", "group": "season",
+      "keywords": ["winter", "wintry", "snow", "snowed", "snowy", "december", "january", "frozen", "cold", "solstice", "midwinter", "knitting", "hot spring"],
+      "en": {"title": "Winter Lofi ❄ warm beats for cold days", "description": "Warm lofi for snowy days and long winter evenings."},
+      "zh": {"title": "冬天 lofi ❄｜冷天裡的溫暖音樂", "description": "下雪天和漫長冬夜裡的溫暖 lofi。"}
+    },
+    {
+      "key": "autumn", "group": "season",
+      "keywords": ["autumn", "fall", "october", "november", "maple", "ginkgo", "leaves", "harvest", "pumpkin"],
+      "en": {"title": "Autumn Lofi 🍂 beats for slow fall days", "description": "Golden, slow lofi for autumn afternoons and crisp evenings."},
+      "zh": {"title": "秋天 lofi 🍂｜秋日慢時光", "description": "金黃色的秋日 lofi，適合慢慢的午後和微涼的夜晚。"}
+    }
+  ]
+}
