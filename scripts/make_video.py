@@ -23,10 +23,13 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import fetch_background  # noqa: E402
+import scenes  # noqa: E402
 import themes  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 FONTS = ROOT / "assets" / "fonts"
+# Chinese cover titles: LXGW WenKai TC (霞鶩文楷), a free OFL font (assets/fonts/OFL-LXGWWenKaiTC.txt).
+ZH_COVER_FONT = "LXGWWenKaiTC-Bold.ttf"
 HISTORY = ROOT / "data" / "history.json"
 AUDIO_EXT = {".mp3", ".m4a", ".aac", ".wav", ".flac", ".ogg", ".opus"}
 IMAGE_EXT = {".png", ".jpg", ".jpeg", ".webp"}
@@ -135,6 +138,69 @@ def make_cover(bg, title, subtitle, out_path):
     img.convert("RGB").save(out_path, quality=92)
 
 
+def make_cover_zh(bg, title, hook, uses, out_path):
+    """Chinese thumbnail: a big title in LXGW WenKai, a highlighted search hook ("聖誕 lofi")
+    and the reasons people search for this music, all large enough to read at phone size."""
+    w, h = bg.size
+    img = bg.copy()
+    # Darker, wider glow than the English cover: the text block is bigger.
+    glow = Image.new("RGBA", bg.size, (0, 0, 0, 0))
+    ImageDraw.Draw(glow).rounded_rectangle((w * 0.08, h * 0.22, w * 0.92, h * 0.80), radius=80, fill=(16, 12, 8, 150))
+    img.alpha_composite(glow.filter(ImageFilter.GaussianBlur(60)))
+    draw = ImageDraw.Draw(img)
+
+    title_font = fit(title, 220, w * 0.86, lambda s: font(ZH_COVER_FONT, s))
+    draw_shadowed(img, (w / 2, h * 0.42), title, title_font, (255, 248, 236, 255), "mm", 200, 12)
+
+    # Hook in a warm pill, then the uses in cream, on one line under the title.
+    hook_font = font(ZH_COVER_FONT, 92)
+    uses_text = "・".join(uses)
+    uses_font = font(ZH_COVER_FONT, 80)
+    pad_x, gap = 44, 36
+    hook_w = hook_font.getlength(hook) + pad_x * 2
+    total = hook_w + gap + uses_font.getlength(uses_text)
+    x0, cy = (w - total) / 2, h * 0.66
+    pill = (x0, cy - 66, x0 + hook_w, cy + 66)
+    shadow = Image.new("RGBA", bg.size, (0, 0, 0, 0))
+    ImageDraw.Draw(shadow).rounded_rectangle((pill[0] + 3, pill[1] + 6, pill[2] + 3, pill[3] + 6), radius=66, fill=(0, 0, 0, 140))
+    img.alpha_composite(shadow.filter(ImageFilter.GaussianBlur(10)))
+    draw.rounded_rectangle(pill, radius=66, fill=(242, 196, 110, 255))
+    draw.text((x0 + hook_w / 2, cy), hook, font=hook_font, fill=(46, 30, 14, 255), anchor="mm")
+    draw_shadowed(img, (x0 + hook_w + gap, cy), uses_text, uses_font, (255, 240, 214, 255), "lm", 190, 8)
+    img.convert("RGB").save(out_path, quality=92)
+
+
+def make_cover_zh_sentence(bg, title, sentence, out_path):
+    """The A/B variant of the Chinese thumbnail: the theme title small in a warm pill on top,
+    one full sentence (e.g. 聽了真的會放鬆的音樂) as the big text."""
+    w, h = bg.size
+    img = bg.copy()
+    glow = Image.new("RGBA", bg.size, (0, 0, 0, 0))
+    ImageDraw.Draw(glow).rounded_rectangle((w * 0.06, h * 0.24, w * 0.94, h * 0.78), radius=80, fill=(16, 12, 8, 150))
+    img.alpha_composite(glow.filter(ImageFilter.GaussianBlur(60)))
+    draw = ImageDraw.Draw(img)
+
+    title_font = fit(title, 84, w * 0.6, lambda s: font(ZH_COVER_FONT, s))
+    pad_x, cy = 44, h * 0.36
+    pill_w = title_font.getlength(title) + pad_x * 2
+    pill = ((w - pill_w) / 2, cy - 62, (w + pill_w) / 2, cy + 62)
+    draw.rounded_rectangle(pill, radius=62, fill=(242, 196, 110, 255))
+    draw.text((w / 2, cy), title, font=title_font, fill=(46, 30, 14, 255), anchor="mm")
+
+    # Long sentences break at the comma onto two lines rather than shrinking too far.
+    lines = [sentence]
+    if font(ZH_COVER_FONT, 150).getlength(sentence) > w * 0.88 and "，" in sentence:
+        head, tail = sentence.split("，", 1)
+        lines = [head, tail]
+    size = min(fit(line, 170, w * 0.88, lambda s: font(ZH_COVER_FONT, s)).size for line in lines)
+    sentence_font = font(ZH_COVER_FONT, size)
+    step = size * 1.2
+    top = h * 0.60 - step * (len(lines) - 1) / 2
+    for i, line in enumerate(lines):
+        draw_shadowed(img, (w / 2, top + i * step), line, sentence_font, (255, 248, 236, 255), "mm", 200, 12)
+    img.convert("RGB").save(out_path, quality=92)
+
+
 def make_track_frame(bg, index, total, name, out_path):
     w, h = bg.size
     img = bg.copy()
@@ -217,12 +283,17 @@ def make_one(cfg, today, video_cfg, tracks, theme, scheduled, history, used_bg_i
 
     # One copyright-free photo from the web for the theme; the bundled images
     # are only a fallback when nothing suitable is found.
-    fetched = fetch_background.fetch(theme, used_bg_ids, work, today.toordinal() * 10 + len(used_bg_ids))
+    # The photo must show one of the allowed cover scenes (see scenes.py); the bundled
+    # record-player-and-speakers images are themselves on-scene.
+    scene = scenes.scene_for(theme, today.toordinal() * 2 + (1 if video_cfg.get("from_pool") else 0))
+    print(f"Cover scene: {scene} ({scenes.SCENES[scene]['zh']})")
+    fetched = fetch_background.fetch(theme, used_bg_ids, work, today.toordinal() * 10 + len(used_bg_ids), scene)
     if fetched:
         background, background_source = fetched
         used_bg_ids.add(background_source["id"])
     else:
         background_source = None
+        scene = "vinyl"  # the bundled images all show a record player and speakers
         background = ROOT / cfg["backgrounds_dir"] / theme.get("background", "")
         if not background.is_file():
             background = pick_background(cfg, history)
@@ -230,11 +301,23 @@ def make_one(cfg, today, video_cfg, tracks, theme, scheduled, history, used_bg_i
 
     base = f"{today:%Y-%m-%d}_{video_cfg['id']}_{slug(theme['cover_title'])}"
     bg = load_background(cfg, background)
+    # Chinese cover A/B test: keywords vs a full sentence, alternating by day and slot.
+    slot = 1 if video_cfg.get("from_pool") else 0
+    zh_variant = scenes.zh_cover_variant(today, slot)
+    zh_sentence = scenes.cover_sentence_zh(theme, scene, today.toordinal() * 2 + slot) if zh_variant == "sentence" else None
+    print(f"Chinese cover: {zh_variant}{' - ' + zh_sentence if zh_sentence else ''}")
     covers = {}
     for lang in cfg["languages"]:
         loc = themes.localized(theme, lang)
         covers[lang] = out_dir / f"{base}_{lang}_cover.jpg"
-        make_cover(bg, loc["cover_title"], loc["cover_subtitle"], covers[lang])
+        if lang == "zh":
+            if zh_variant == "sentence":
+                make_cover_zh_sentence(bg, loc["cover_title"], zh_sentence, covers[lang])
+            else:
+                hook, uses = scenes.cover_keywords_zh(theme, scene)
+                make_cover_zh(bg, loc["cover_title"], hook, uses, covers[lang])
+        else:
+            make_cover(bg, loc["cover_title"], loc["cover_subtitle"], covers[lang])
 
     frames = []
     for i, name in enumerate(names):
@@ -311,6 +394,9 @@ def make_one(cfg, today, video_cfg, tracks, theme, scheduled, history, used_bg_i
         "tracks": names,
         "background": background_source["image_url"] if background_source else background.name,
         "background_source": background_source,
+        "cover_scene": scene,
+        "zh_cover_variant": zh_variant,
+        "zh_cover_sentence": zh_sentence,
         "duration_seconds": round(total),
         "files": files,
         "scheduled_theme": scheduled,

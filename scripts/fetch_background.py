@@ -1,5 +1,10 @@
 """Find one copyright-free photo for today's theme and download it.
 
+The photo must show one of the allowed cover scenes in scripts/scenes.py (café,
+scenic spot, street, landscape, city landmark, records, hi-fi, reading): only that
+scene's queries are searched, and a result whose file name doesn't name the scene
+(or names a document, artwork, space photo...) is skipped.
+
 Wikimedia Commons is searched first, then Openverse (which often times out from
 GitHub's runners). Only CC0 and public-domain images are used, so the video needs
 no on-screen credit; the source is still written into the YouTube description.
@@ -15,13 +20,14 @@ from pathlib import Path
 
 from PIL import Image
 
+import scenes
+
 COMMONS_API = "https://commons.wikimedia.org/w/api.php"
 OPENVERSE_API = "https://api.openverse.org/v1/images/"
 USER_AGENT = "yt-music-daily/1.0 (https://github.com/alexchie/yt-music)"
 MIN_WIDTH = 1600
 MIN_RATIO = 1.4  # wide enough to crop to 16:9 without losing most of the picture
 DOWNLOAD_WIDTH = 1920
-GENERIC_QUERIES = ["cozy living room", "cozy interior", "autumn window light"]
 # These Openverse sources only hand out small previews (960-1024 px), never the original.
 SMALL_PREVIEW_SOURCES = {"rawpixel", "stocksnap"}
 
@@ -68,6 +74,7 @@ def search_commons(query):
             "width": info.get("width"),
             "height": info.get("height"),
             "title": _plain(meta.get("ObjectName")) or page.get("title", "").removeprefix("File:").rsplit(".", 1)[0],
+            "file_name": page.get("title", "").removeprefix("File:"),
             "creator": _plain(meta.get("Artist"))[:80],
             "license": lic,
             "source": "Wikimedia Commons",
@@ -98,21 +105,16 @@ def search_openverse(query):
 SOURCES = [("Commons", search_commons), ("Openverse", search_openverse)]
 
 
-def queries(theme):
-    """The theme's own image_query first, then the cover title with fewer and fewer words."""
-    out = []
-    if theme.get("image_query"):
-        out.append(theme["image_query"])
-    words = [w for w in theme.get("cover_title", "").split() if len(w) > 2]
-    for n in range(len(words), 1, -1):
-        out.append(" ".join(words[:n]))
-    return out + GENERIC_QUERIES
+def on_scene(result, scene):
+    """The file name or title must say the photo shows the scene."""
+    names = [n for n in (result.get("file_name"), result.get("title")) if n]
+    return not any(scenes.blocked(n) for n in names) and any(scenes.matches(n, scene) for n in names)
 
 
-def usable(result, used_ids):
+def usable(result, used_ids, scene):
     """Size metadata can be missing, so only reject what is known to be too small;
     the downloaded file is checked again."""
-    if result["id"] in used_ids or not result.get("url"):
+    if result["id"] in used_ids or not result.get("url") or not on_scene(result, scene):
         return False
     w, h = result.get("width") or 0, result.get("height") or 0
     if w and w < MIN_WIDTH:
@@ -129,12 +131,12 @@ def credit(result):
     return line.replace("<", "").replace(">", "")
 
 
-def fetch(theme, used_ids, out_dir, seed):
-    """Download one image for the theme. Returns (path, info dict) or None."""
+def fetch(theme, used_ids, out_dir, seed, scene):
+    """Download one image of the scene for the theme. Returns (path, info dict) or None."""
     rng = random.Random(seed)
     for name, search in SOURCES:
         failures = 0
-        for query in queries(theme):
+        for query in scenes.queries(theme, scene):
             try:
                 found = search(query)
             except Exception as e:  # network or API error: try the next query
@@ -143,8 +145,8 @@ def fetch(theme, used_ids, out_dir, seed):
                 if failures >= 2:  # the service is down; don't wait on every query
                     break
                 continue
-            results = [r for r in found if usable(r, used_ids)]
-            print(f"{name} {query!r}: {len(found)} copyright-free results, {len(results)} usable")
+            results = [r for r in found if usable(r, used_ids, scene)]
+            print(f"{name} {query!r}: {len(found)} copyright-free results, {len(results)} usable for {scene}")
             rng.shuffle(results)
             for result in results[:6]:
                 try:
@@ -167,6 +169,7 @@ def fetch(theme, used_ids, out_dir, seed):
                 return path, {
                     "id": result["id"],
                     "query": query,
+                    "scene": scene,
                     "title": result.get("title"),
                     "creator": result.get("creator"),
                     "license": result["license"],
